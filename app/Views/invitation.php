@@ -1,9 +1,16 @@
 <?= view('templates/header'); ?>
+<?php 
+    $day = date("l", strtotime($wedding_date));
+    $month = date("F", strtotime($wedding_date));
+    $tanggal = date("j", strtotime($wedding_date));
+    $hari = day_to_hari($day);
+    $bulan = month_to_bulan($month);
+?>
 
 <div class="pt-auto pb-4 my-auto text-center" style="padding-top: 80px;" id="acara">
     <div class="mt-4" style="font-family: 'Playfair Display', serif;">
         <h4 class="lead">The wedding of</h4>
-        <h1 class="display-4 fw-bold"><i>Aya & Niken</i></h1>
+        <h1 class="display-4 fw-bold"><i>Niken & Aya</i></h1>
         <h4 class="lead"><?= date("F jS, Y", strtotime($wedding_date));?></h4>
     </div>
 
@@ -32,19 +39,19 @@
       </div>
       <hr class="featurette-divider">
       <div class="row" style="font-family: 'Playfair Display', serif;">      
-        <div class="col-lg-5">
-            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngman_34.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <h2><i>M. N. Adhi Wiradharma (Aya)</i></h2>
-            <p>Putra dari Bpk. Slamet A. Wirawan & Ibu Ira Puspasari (Alm.)</p>
-        </div><!-- /.col-lg-6 -->
-        <div class="col-lg-2 align-self-center">
-            <div class="display-1">&</div>
-        </div>
-        <div class="col-lg-5">
+      <div class="col-lg-5">
         <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngwoman_38.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i>Niken Paramita</i></h2>
             <p>Putri dari Bpk. Andri Amir (Alm.) & Ibu Asih</p>
         </div><!-- /.col-lg-6 -->      
+        <div class="col-lg-2 align-self-center">
+            <div class="display-1">&</div>
+        </div>
+        <div class="col-lg-5">
+            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngman_34.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h2><i>M. N. Adhi Wiradharma (Aya)</i></h2>
+            <p>Putra dari Bpk. Ir. Slamet A. Wirawan & Ibu Ira Puspasari (Alm.)</p>
+        </div><!-- /.col-lg-6 -->
       </div>
     </div>
 </div>
@@ -53,59 +60,33 @@
 <!-- COUNTDOWN -->
 <div class="container px-4 py-4 text-center" id="counter-cards">
     <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Mark the Date!</h2>
-    <?php 
-        $day = date("l", strtotime($wedding_date));
-        switch ($day) {
-            case "Sunday":
-                $hari = "Minggu";
-                break;
-            case "Monday":
-                $hari = "Senin";
-                break;
-            case "Tuesday":
-                $hari = "Selasa";
-                break;
-            case "Wednesday":
-                $hari = "Rabu";
-                break;
-            case "Thursday":
-                $hari = "Senin";
-                break;
-            case "Friday":
-                $hari = "Jumat";
-                break;
-            case "Saturday":
-                $hari = "Sabtu";
-                break;
-        }
-    ?>
-    <h4 class="lead"><?= $hari . ", " . date("d F Y", strtotime($wedding_date));?></h4>
+    <h4 class="lead"><?= "{$hari}, {$tanggal}" . date("Y", strtotime($wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4">
         <div class="col-lg-3">
             <div class="card bg-secondary text-white">
-                <div class="card-body display-6" id="days">                    
+                <div class="card-body display-6 px-0" id="days">                    
                 </div>
                 <div class="card-subtitle mb-2">hari</div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card bg-secondary text-white">
-                <div class="card-body display-6" id="hours">
+                <div class="card-body display-6 px-0" id="hours">
                 </div>
                 <div class="card-subtitle mb-2">jam</div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card bg-secondary text-white">
-                <div class="card-body display-6" id="minutes">                    
+                <div class="card-body display-6 px-0" id="minutes">                    
                 </div>
                 <div class="card-subtitle mb-2">menit</div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card bg-secondary text-white">
-                <div class="card-body display-6" id="seconds">                    
+                <div class="card-body display-6 px-0" id="seconds">                    
                 </div>
                 <div class="card-subtitle mb-2">detik</div>
             </div>
@@ -120,23 +101,23 @@
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Akad</h2>
     <div class="py-2">
       <div class="col-lg-12 mx-auto">
-          <p>Sabtu, 4 Juni 2022</p>
-          <p>Pukul 08:00 - 09:00</p>
-          <p>Burj Al Arab Jumeirah Hotel, Dubai</p>
+          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($akad_date)); ?></p>
+          <p>Pukul <?= $akad_time; ?></p>
+          <p><?= $wedding_address; ?></p>
       </div>
     </div>
 
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Resepsi</h2>
     <div class="py-2">
       <div class="col-lg-12 mx-auto">
-          <p>Sabtu, 4 Juni 2022</p>
-          <p>Pukul 10:00 - 14:00</p>
-          <p>Burj Al Arab Jumeirah Hotel, Dubai</p>
+          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($wedding_date)); ?></p>
+          <p>Pukul <?= $wedding_time; ?></p>
+          <p><?= $wedding_address; ?></p>
       </div>
 
       <div class="col-lg-12 mx-auto pb-4 ">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1805.9132661947501!2d55.18388395810115!3d25.141554845980554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6a576414cf2d%3A0xb3da71b879f0e038!2sBurj%20Al%20Arab!5e0!3m2!1sen!2sid!4v1646988070348!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>    
-        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.124865820308!2d106.87684175000001!3d-6.226605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f53ae0e3ca29%3A0xfba9636463a1ce8b!2sIS%20PLAZA%20BALLROOM!5e0!3m2!1sen!2sid!4v1647143521553!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
     </div>
 
     <div class="col-lg-6 mx-auto border-bottom">
@@ -210,7 +191,23 @@
             <?php 
                 endforeach; 
             endif;
+
+            if($private_guestbook):
+                foreach($private_guestbook as $pg): 
             ?>
+            <figure>
+                <blockquote class="blockquote text-black">
+                    <p><?= $pg->message; ?></p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <?= $pg->name; ?> <cite title="Source Title">Private (Unpublished)</cite>
+                </figcaption>
+            </figure>             
+            <?php 
+                endforeach; 
+            endif;
+            ?>
+
             </div>
         </div>
     </div>    
@@ -224,10 +221,10 @@
         <div class="card">
             <div class="card-body">
               <div class="mb-3">                  
-                <textarea class="form-control" id="ucapan" rows="3"></textarea>
+                <textarea class="form-control" id="message" rows="3"></textarea>
               </div>
               <div class="form-floating mb-3">
-                <button class="btn btn-outline-secondary" id="kirim">Kirim</button>
+                <button class="btn btn-outline-secondary" id="kirim-pesan" data-guest-id="<?= $guest->id; ?>">Kirim</button>
               </div>
             
             </div>
@@ -237,9 +234,54 @@
 </div>
 <!-- /FORM BUKU TAMU -->
 
+<!-- QR -->
+<div class="bg-secondary text-white px-4 py-4 text-center">
+    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Om, Minta Duit</h2>
+    <div class="col-md-6 mx-auto justify-content-sm-center">
+        <div class="col-md-5 mx-auto justify-content-sm-center">
+            <div class="card px-0 py-0">
+                <div class="card-body">
+                <img width="320" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Asih" preserveAspectRatio="xMidYMid slice" focusable="true">
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<!-- /BUKU TAMU -->
+
 
 <?= view('templates/footer'); ?>
 <script type="text/javascript">
+$(document).ready( function () {
+    $('#kirim-pesan').on('click', function(){
+        let guest_id = $(this).data('guest-id');
+        let message = $('#message').val();
+
+        Swal.fire({
+            title: 'Kirimkan pesan?',
+            showCancelButton: true,
+            confirmButtonText: 'Kirim',
+            cancelButtonText: 'Batal',
+            // text: 'Pesan Anda akan segera tampil di halaman ini',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    url: `<?= base_url(); ?>/guestbook/create/`,
+                    headers: {'X-Requested-With': 'XMLHttpRequest'},
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { guest_id:guest_id, message:message },             
+                    success: function(data) {
+                        Swal.fire('Pesan telah dikirim!', '', 'success')
+                    }
+                });
+
+            }
+        });
+        
+    });    
+});
 
 // Set the date we're counting down to
 let countDownDate = new Date("<?= $wedding_date;?>").getTime();
@@ -247,28 +289,28 @@ let countDownDate = new Date("<?= $wedding_date;?>").getTime();
 // Update the count down every 1 second
 let x = setInterval(function() {
 
-  // Get today's date and time
-  let now = new Date().getTime();
+    // Get today's date and time
+    let now = new Date().getTime();
 
-  // Find the distance between now and the count down date
-  let distance = countDownDate - now;
+    // Find the distance between now and the count down date
+    let distance = countDownDate - now;
 
-  // Time calculations for days, hours, minutes and seconds
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Time calculations for days, hours, minutes and seconds
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Display the result in the element with id="demo"
-  $("#days").html(days); 
-  $("#hours").html(hours); 
-  $("#minutes").html(minutes);
-  $("#seconds").html(seconds);
+    // Display the result in the element with id="demo"
+    $("#days").html(days); 
+    $("#hours").html(hours); 
+    $("#minutes").html(minutes);
+    $("#seconds").html(seconds);
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
+    // If the count down is finished, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
 }, 1000);
 </script>

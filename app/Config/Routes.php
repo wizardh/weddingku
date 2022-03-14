@@ -29,9 +29,14 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 
+$routes->resource('guest');
+$routes->resource('guestbook');
+$routes->resource('setting');
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/(:alphanum)', 'Invitation::index/$1');
+
 
 /*
  * --------------------------------------------------------------------
