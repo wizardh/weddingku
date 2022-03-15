@@ -70,13 +70,13 @@
 </head>
 <body>
 	<div class="wrap">
-		<h1>404 - File Not Found</h1>
+		<img src="<?= base_url('assets/images/internet_404_page_not_found.png');?>"></h1>
 
 		<p>
 			<?php if (! empty($message) && $message !== '(null)') : ?>
 				<?= nl2br(esc($message)) ?>
 			<?php else : ?>
-				Sorry! Cannot seem to find the page you were looking for.
+				Maaf! Halaman yang Anda cari tidak ditemukan.
 			<?php endif ?>
 		</p>
 	</div>

@@ -26,7 +26,7 @@ CREATE TABLE `guest` (
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `phone` varchar(18) DEFAULT NULL,
-  `address` text,
+  `address` varchar(255) DEFAULT NULL,
   `notes` varchar(100) DEFAULT NULL,
   `invitation_code` varchar(100) DEFAULT NULL,
   `invited_by` enum('Groom','Bride') DEFAULT NULL,
@@ -36,18 +36,12 @@ CREATE TABLE `guest` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `guest` */
 
 insert  into `guest`(`id`,`title`,`name`,`email`,`phone`,`address`,`notes`,`invitation_code`,`invited_by`,`is_attending`,`attendee`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,'Sdr','Saudari Sekeluarga',NULL,'','Kelompok',NULL,'o7CnN','Groom',0,0,'2022-03-13 03:48:16','2022-03-13 09:07:04',NULL),
-(2,'Bpk','Desa ',NULL,'','Desa Deso',NULL,'SW1nR','Groom',0,0,'2022-03-13 03:48:52','2022-03-13 06:13:52',NULL),
-(3,'Dll','Dan Lain-Lain',NULL,'','haha hihi',NULL,'we1LV','Groom',0,0,'2022-03-13 03:49:36','2022-03-13 06:14:07',NULL),
-(4,'','Salah Ketik Bro',NULL,'','Alamat Opsional',NULL,'MctQT','Groom',0,0,'2022-03-13 06:14:29','2022-03-13 06:23:33',NULL),
-(5,'','U Wot M8',NULL,'','Dimensi Enam Dua',NULL,'N4q5d','Groom',0,0,'2022-03-13 06:15:28','2022-03-13 07:31:46',NULL),
-(6,'','Tersesat Bersama',NULL,'','',NULL,'s97fH','Groom',0,0,'2022-03-13 06:18:54','2022-03-14 10:30:44',NULL),
-(7,'','12312312321',NULL,'','sadasda',NULL,'sGa4t','Groom',0,0,'2022-03-14 10:18:55',NULL,NULL);
+(1,'Sdr','Keluarga Cirebon',NULL,'','Cirebon','','gPD0r','Groom',1,1,'2022-03-15 12:29:36','2022-03-15 12:38:17',NULL);
 
 /*Table structure for table `guestbook` */
 
@@ -62,20 +56,12 @@ CREATE TABLE `guestbook` (
   `approved_by` varchar(100) DEFAULT NULL,
   `approved_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `guestbook` */
 
 insert  into `guestbook`(`id`,`guest_id`,`message`,`created_at`,`approved`,`approved_by`,`approved_at`) values 
-(1,1,'Selamat ulang tahun ya!','2022-03-11 21:18:33',1,'Groom','2022-03-14 11:28:38'),
-(2,1,'Eh sori, bukan selamat ulang tahun...','2022-03-11 21:18:51',1,'Groom','2022-03-13 12:16:54'),
-(3,1,'Biarin deh, asal komentar aja yang penting guestbook-nya keisi','2022-03-11 21:53:09',1,'Groom','2022-03-13 11:44:58'),
-(4,1,'Masih kurang, tambah lagi komentarnya biar bisa nge-scroll','2022-03-11 22:04:06',1,'Groom','2022-03-13 12:16:57'),
-(5,1,'Tambah terus~','2022-03-11 22:04:47',1,'Groom','2022-03-13 11:45:01'),
-(6,4,'Test input langsung dari sini','2022-03-13 12:00:57',1,'Groom','2022-03-13 12:16:59'),
-(7,5,'yuwot met?','2022-03-14 11:17:46',0,NULL,NULL),
-(8,5,'el mao wkwkwk','2022-03-14 11:22:05',1,'Groom','2022-03-14 11:28:58'),
-(9,5,'semoga sudah bener','2022-03-14 11:22:35',0,NULL,NULL);
+(1,1,'Ini adalah komentar pesan pertama, selamat ya!','2022-03-15 12:38:09',0,'Groom','2022-03-15 12:45:30');
 
 /*Table structure for table `login` */
 
@@ -94,7 +80,7 @@ CREATE TABLE `login` (
 /*Data for the table `login` */
 
 insert  into `login`(`id`,`username`,`password`,`user_type`,`last_login`,`last_ip`) values 
-(1,'aya','$2y$10$eC2zusxWF9k.hoaagXGKN.2ez8yhsw7/hiG/KYlBYi20e2ENyRS1W','Groom',NULL,NULL),
+(1,'aya','$2y$10$4wD.m67lvuK7D05FhD1fBuzJTN2oi5Y7H0u30jw3z5QypXP/WYf6C','Groom',NULL,NULL),
 (2,'niken','$2y$10$K8WiqbwNcPtxzDb60HrswulVx.3mAugs283LJX7ITpj8kK3hGUJNq','Bride',NULL,NULL);
 
 /*Table structure for table `login_attemp` */
@@ -121,7 +107,9 @@ DROP TABLE IF EXISTS `wedding_settings`;
 CREATE TABLE `wedding_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groom_name` varchar(100) DEFAULT NULL,
+  `groom_nickname` varchar(50) DEFAULT NULL,
   `bride_name` varchar(100) DEFAULT NULL,
+  `bride_nickname` varchar(50) DEFAULT NULL,
   `groom_parents` varchar(100) DEFAULT NULL,
   `bride_parents` varchar(100) DEFAULT NULL,
   `wedding_date` date DEFAULT NULL,
@@ -130,6 +118,7 @@ CREATE TABLE `wedding_settings` (
   `akad_time` varchar(50) DEFAULT NULL,
   `wedding_address` varchar(300) DEFAULT NULL,
   `akad_address` varchar(300) DEFAULT NULL,
+  `health_protocol` tinyint(1) DEFAULT '1',
   `updated_by` varchar(50) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -137,8 +126,8 @@ CREATE TABLE `wedding_settings` (
 
 /*Data for the table `wedding_settings` */
 
-insert  into `wedding_settings`(`id`,`groom_name`,`bride_name`,`groom_parents`,`bride_parents`,`wedding_date`,`wedding_time`,`akad_date`,`akad_time`,`wedding_address`,`akad_address`,`updated_by`,`updated_at`) values 
-(1,'M. N. Adhi Wiradharma (Aya)','Niken Paramita','Bpk. Ir. Slamet A. Wirawan & Ibu Ira Puspasari (Alm.)','Bpk. Andri Amir (Alm.) & Ibu Asih','2022-08-20','10:00 - 13:00','2022-08-20','08:00 - 09:00','IS PLAZA Ballroom, Pramuka, Jakarta Timur','IS PLAZA Ballroom, Pramuka, Jakarta Timur','Groom','2022-03-14 00:44:14');
+insert  into `wedding_settings`(`id`,`groom_name`,`groom_nickname`,`bride_name`,`bride_nickname`,`groom_parents`,`bride_parents`,`wedding_date`,`wedding_time`,`akad_date`,`akad_time`,`wedding_address`,`akad_address`,`health_protocol`,`updated_by`,`updated_at`) values 
+(1,'M. N. Adhi Wiradharma','Aya','Niken Paramita','Niken','Bpk. Ir. Slamet A. Wirawan & Ibu Ira Puspasari (Alm.)','Bpk. Andri Amir (Alm.) & Ibu Asih','2022-08-20','10:00 - 13:00','2022-08-20','08:00 - 09:00','IS PLAZA Ballroom, Pramuka, Jakarta Timur','IS PLAZA Ballroom, Pramuka, Jakarta Timur',1,'Groom','2022-03-14 00:44:14');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
