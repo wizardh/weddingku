@@ -13,12 +13,14 @@ class Invitation extends BaseController
     public function index($invitation_code = '')
     {        
         $guest = $this->guestModel->get_by_code($invitation_code);
-        $guestbook = $this->guestModel->get_guestbooks();
-        $private_guestbook = $this->guestModel->get_private_guestbooks($guest->id);
         if( !$guest )
         {
             return view('errors/html/error_404');
         }
+
+        $guestbook = $this->guestModel->get_guestbooks();
+        $private_guestbook = $this->guestModel->get_private_guestbooks($guest->id);
+
         $data = array(
             'title'             => 'Home',
             'wedding_date'      => '2022-08-20',

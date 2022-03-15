@@ -61,7 +61,7 @@ $(document).ready( function () {
     $('.set-public').on('click', function(){
         let id = $(this).data('id');
         let approved = 1;
-        let approved_by = 'Groom';
+        let approved_by = '<?= session('user_type');?>';
         console.log(id);
 
         // ajax to set public (approved = 1)

@@ -29,6 +29,10 @@ $routes->setAutoRoute(true);
  * --------------------------------------------------------------------
  */
 
+$routes->get('login', 'Login::index');
+$routes->post('login', 'Login::process');
+$routes->get('logout', 'Login::logout');
+
 $routes->resource('guest');
 $routes->resource('guestbook');
 $routes->resource('setting');

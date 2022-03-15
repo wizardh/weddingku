@@ -7,21 +7,20 @@ class Setting extends BaseController
     function __construct()
     {
         helper(['form', 'cookie', 'date']);
-        $this->adminModel = new AdminModel();
-
-        $this->validation =  \Config\Services::validation();
-        $this->request = \Config\Services::request();
-        $this->session = \Config\Services::session();
-        
+        $this->adminModel = new AdminModel();        
     }
 
     public function index()
     {        
+        if( is_null(session('logged_in')) )
+        {
+            return redirect()->to(base_url('login'));
+        }
+                
         $data = array(
             'title'         => 'Home',
             'page_name'     => 'Setting Detail Pernikahan',
             'wsettings'       => $this->adminModel->get_wedding_settings(),
-            'session'       => $this->session,
         );
 
         return view('admin/form_setting', $data);
@@ -39,7 +38,7 @@ class Setting extends BaseController
         $insert = $this->guestModel->insert_guestbook($data);
         if($insert)
         {
-            $this->session->setFlashdata('success', "Berhasil mengirim pesan ke buku tamu");
+            session()->setFlashdata('success', "Berhasil mengirim pesan ke buku tamu");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'success'));
@@ -51,7 +50,7 @@ class Setting extends BaseController
         }
         else
         {
-            $this->session->setFlashdata('error', "Tidak ada data yang berubah");
+            session()->setFlashdata('error', "Tidak ada data yang berubah");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'error'));
@@ -76,7 +75,7 @@ class Setting extends BaseController
         $update = $this->guestModel->update_guestbook($data);
         if($update)
         {
-            $this->session->setFlashdata('success', "Berhasil memperbarui data buku tamu");
+            session()->setFlashdata('success', "Berhasil memperbarui data buku tamu");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'success'));
@@ -88,7 +87,7 @@ class Setting extends BaseController
         }
         else
         {
-            $this->session->setFlashdata('error', "Tidak ada data yang berubah");
+            session()->setFlashdata('error', "Tidak ada data yang berubah");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'error'));

@@ -7,9 +7,9 @@
         </div>
       </div>
       <?php 
-      if($session->getFlashdata('success')): ?>
+      if(session()->getFlashdata('success')): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?= $session->getFlashdata('success'); ?>
+        <?= session()->getFlashdata('success'); ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       <?php 
@@ -21,7 +21,7 @@
       <?php endif; ?>      
       <?php
         if($new):
-            $hidden = ['invited_by' => 'Groom'];
+            $hidden = ['invited_by' => session('user_type')];
             echo form_open('guest/create', '', $hidden);       
         else:
             $hidden = ['invited_by' => 'Groom', 'id' => $guest->id];

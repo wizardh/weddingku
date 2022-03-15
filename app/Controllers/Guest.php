@@ -9,20 +9,20 @@ class Guest extends BaseController
         helper(['form', 'cookie', 'date']);
         $this->guestModel = new GuestModel();
 
-        $this->validation =  \Config\Services::validation();
-        $this->request = \Config\Services::request();
-        $this->session = \Config\Services::session();
-        
     }
 
     public function index()
     {        
+        if( is_null(session('logged_in')) )
+        {
+            return redirect()->to(base_url('login'));
+        }
+
         $data = array(
             'title'         => 'Home',
             'wedding_date'  => '2022-06-04',
             'page_name'     => 'Daftar Tamu',
             'guests'        => $this->guestModel->get_guests(),
-            'session'       => $this->session,
         );
 
         return view('admin/list_guest', $data);
@@ -30,11 +30,15 @@ class Guest extends BaseController
 
     public function new()
     {
+        if( is_null(session('logged_in')) )
+        {
+            return redirect()->to(base_url('login'));
+        }
+                
         $data = array(
             'title'         => 'Home',
             'wedding_date'  => '2022-06-04',
             'page_name'     => 'Data Tamu Baru',
-            'session'       => $this->session,
             'new'           => true,
         );
 
@@ -65,11 +69,11 @@ class Guest extends BaseController
         $insert = $this->guestModel->insert_guest($data);
         if($insert)
         {
-            $this->session->setFlashdata('success', "Berhasil menyimpan data tamu: {$name}");
+            session()->setFlashdata('success', "Berhasil menyimpan data tamu: {$name}");
         }
         else
         {
-            $this->session->setFlashdata('error', "Gagal menyimpan data tamu: {$name}");
+            session()->setFlashdata('error', "Gagal menyimpan data tamu: {$name}");
         }
         return redirect()->to(base_url('guest/new'));
     }
@@ -86,7 +90,6 @@ class Guest extends BaseController
             'wedding_date'  => '2022-06-04',
             'page_name'     => 'Edit/View Data Tamu',
             'guest'         => $guest,
-            'session'       => $this->session,
             'new'           => FALSE,
         );
 
@@ -114,11 +117,11 @@ class Guest extends BaseController
         $update = $this->guestModel->update_guest($data);
         if($update)
         {
-            $this->session->setFlashdata('success', "Berhasil memperbarui data tamu: {$name}");
+            session()->setFlashdata('success', "Berhasil memperbarui data tamu: {$name}");
         }
         else
         {
-            $this->session->setFlashdata('error', "Tidak ada data yang berubah");
+            session()->setFlashdata('error', "Tidak ada data yang berubah");
         }
 
         return redirect()->to(base_url('guest/new'));

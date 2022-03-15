@@ -7,9 +7,9 @@
         </div>
       </div>
       <?php 
-      if($session->getFlashdata('success')): ?>
+      if(session()->getFlashdata('success')): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?= $session->getFlashdata('success'); ?>
+        <?= session()->getFlashdata('success'); ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       <?php 
@@ -20,27 +20,12 @@
         <?= $validation->listErrors(); ?>
       <?php endif; ?>      
       <?php
-        $hidden = ['updated_by' => 'Groom', 'id' => $wsettings->id];
+        $hidden = ['updated_by' => session('user_type'), 'id' => $wsettings->id];
         echo form_open('setting/update/' . $wsettings->id, '', $hidden);
       ?>      
+
       <div class="col-md-6 col-lg-6">
           <div class="row g-3">
-            <div class="col-sm-12">
-              <label for="name" class="form-label">Groom's Name</label>
-              <input type="text" class="form-control" id="groom_name" name="groom_name" placeholder="" value="<?= $wsettings->groom_name; ?>" required>
-              <div class="invalid-feedback">
-                Valid name is required.
-              </div>
-            </div>
-
-            <div class="col-sm-12">
-              <label for="name" class="form-label">Groom's Parents</label>
-              <input type="text" class="form-control" id="groom_parents" name="groom_parents" placeholder="" value="<?= $wsettings->groom_parents; ?>" required>
-              <div class="invalid-feedback">
-                Valid name is required.
-              </div>
-            </div>
-
             <div class="col-sm-12">
               <label for="name" class="form-label">Bride's Name</label>
               <input type="text" class="form-control" id="bride_name" name="bride_name" placeholder="" value="<?= $wsettings->bride_name; ?>" required>
@@ -57,6 +42,21 @@
               </div>
             </div>            
 
+            <div class="col-sm-12">
+              <label for="name" class="form-label">Groom's Name</label>
+              <input type="text" class="form-control" id="groom_name" name="groom_name" placeholder="" value="<?= $wsettings->groom_name; ?>" required>
+              <div class="invalid-feedback">
+                Valid name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="name" class="form-label">Groom's Parents</label>
+              <input type="text" class="form-control" id="groom_parents" name="groom_parents" placeholder="" value="<?= $wsettings->groom_parents; ?>" required>
+              <div class="invalid-feedback">
+                Valid name is required.
+              </div>
+            </div>
 
           <hr class="my-4">
 

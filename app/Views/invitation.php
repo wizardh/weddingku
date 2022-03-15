@@ -60,7 +60,7 @@
 <!-- COUNTDOWN -->
 <div class="container px-4 py-4 text-center" id="counter-cards">
     <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Mark the Date!</h2>
-    <h4 class="lead"><?= "{$hari}, {$tanggal}" . date("Y", strtotime($wedding_date));?></h4>
+    <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4">
         <div class="col-lg-3">
@@ -175,7 +175,7 @@
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Buku Tamu</h2>
     <div class="col-md-6 mx-auto justify-content-sm-center">
         <div class="card" style="height: 360px;">
-            <div class="card-body" style="overflow-y: auto; max-height: 360px;">
+            <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 360px;">
             <?php
             if($guestbook):
                 foreach($guestbook as $u): 
@@ -249,10 +249,15 @@
 </div>
 <!-- /BUKU TAMU -->
 
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<!-- widget for music player goes here -->
+</div>
+
 
 <?= view('templates/footer'); ?>
 <script type="text/javascript">
 $(document).ready( function () {
+    
     $('#kirim-pesan').on('click', function(){
         let guest_id = $(this).data('guest-id');
         let message = $('#message').val();
@@ -273,7 +278,12 @@ $(document).ready( function () {
                     dataType: 'json',
                     data: { guest_id:guest_id, message:message },             
                     success: function(data) {
-                        Swal.fire('Pesan telah dikirim!', '', 'success')
+                        Swal.fire('Pesan telah dikirim!', '', 'success');
+
+                        message_html = 
+                            `<figure><blockquote class="blockquote text-black"><p>${message}</p></blockquote><figcaption class="blockquote-footer"><?= $guest->name; ?><cite title="Source Title">Private (Unpublished)</cite></figcaption></figure>`;
+                        $('#comment-card').append(message_html);
+                        $('#message').val('');
                     }
                 });
 

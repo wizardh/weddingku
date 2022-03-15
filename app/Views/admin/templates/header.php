@@ -186,9 +186,9 @@
             </a>
           </li>
           <li class="nav-item fs-6">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?= base_url('logout'); ?>">
               <i class="bi bi-x-circle-fill"></i>
-              Sign Out
+              Log Out
             </a>
           </li>
 
