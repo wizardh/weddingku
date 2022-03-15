@@ -148,7 +148,7 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Dashboard</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin Panel</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -183,6 +183,12 @@
             <a class="nav-link" href="<?= base_url('setting'); ?>">
             <i class="bi bi-gear"></i>
               Settings
+            </a>
+          </li>
+          <li class="nav-item fs-6">
+            <a class="nav-link" href="<?= base_url('change_password'); ?>">
+            <i class="bi bi-key"></i>
+              Password
             </a>
           </li>
           <li class="nav-item fs-6">

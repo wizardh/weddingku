@@ -15,4 +15,13 @@ class LoginModel extends Model
         return $query->getRow();
     }    
 
+    public function update_password($params)
+    {
+        $builder = $this->db->table('login');
+        $builder->set($params);
+        $builder->where('id', $params['id']);
+        $builder->update();
+        return true;
+    }
+
 }

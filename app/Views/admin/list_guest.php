@@ -3,7 +3,7 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2"><?= $page_name; ?></h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <a type="button" class="btn btn-sm btn-outline-secondary" href="/guest/new">Add New</a>
+          <a type="button" class="btn btn-primary" href="<?= base_url('guest/new'); ?>"><i class="bi bi-plus"></i> Add New</a>
         </div>
       </div>
 
@@ -14,7 +14,7 @@
         <th scope="col">Nama</th>
         <th scope="col">Alamat</th>
         <th scope="col">Pengundang</th>
-        <th scope="col">Keterangan</th>
+        <th scope="col">Kehadiran</th>
         <th scope="col"></th>
         </tr>
     </thead>
@@ -29,14 +29,14 @@
         <td><?= $g->title . ' ' . $g->name; ?></td>
         <td><?= $g->address; ?></td>
         <td><?= ($g->invited_by == 'Groom' ? 'Mempelai Pria':'Mempelai Wanita'); ?></td>
-        <td><?= $g->notes; ?></td>
+        <td><?= ($g->is_attending == 0 & $g->attendee == 0 ? '-' : ($g->is_attending == 1 ? 'Hadir' : 'Tidak')); ?></td>
         <td>
             <div class="btn-group" role="group">
                 <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Action
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <li><a class="dropdown-item" href="/guest/<?= $g->id; ?>/edit">View</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('guest/'.$g->id.'/edit'); ?>">View</a></li>
                     <li><button class="dropdown-item copy-link" data-invitation-code="<?= $g->invitation_code;?>">Copy Link</button></li>
                     <li><button class="dropdown-item copy-invitation" data-invitation-code="<?= $g->invitation_code;?>">Copy Invitation Text</button></li>
                 </ul>

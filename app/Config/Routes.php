@@ -33,6 +33,11 @@ $routes->get('login', 'Login::index');
 $routes->post('login', 'Login::process');
 $routes->get('logout', 'Login::logout');
 
+$routes->get('change_password', 'Login::form_password');
+$routes->post('change_password', 'Login::change_password');
+
+$routes->post('konfirmasi', 'Guest::konfirmasi');
+
 $routes->resource('guest');
 $routes->resource('guestbook');
 $routes->resource('setting');

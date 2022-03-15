@@ -1,8 +1,8 @@
 <?= view('templates/header'); ?>
 <?php 
-    $day = date("l", strtotime($wedding_date));
-    $month = date("F", strtotime($wedding_date));
-    $tanggal = date("j", strtotime($wedding_date));
+    $day = date("l", strtotime($setting->wedding_date));
+    $month = date("F", strtotime($setting->wedding_date));
+    $tanggal = date("j", strtotime($setting->wedding_date));
     $hari = day_to_hari($day);
     $bulan = month_to_bulan($month);
 ?>
@@ -10,14 +10,14 @@
 <div class="pt-auto pb-4 my-auto text-center" style="padding-top: 80px;" id="acara">
     <div class="mt-4" style="font-family: 'Playfair Display', serif;">
         <h4 class="lead">The wedding of</h4>
-        <h1 class="display-4 fw-bold"><i>Niken & Aya</i></h1>
-        <h4 class="lead"><?= date("F jS, Y", strtotime($wedding_date));?></h4>
+        <h1 class="display-4 fw-bold"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
+        <h4 class="lead"><?= date("F jS, Y", strtotime($setting->wedding_date));?></h4>
     </div>
 
     <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
       <p class="lead">Undangan Kepada</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <div class="card">
+        <div class="card" style="min-width: 240px;">
             <div class="lead card-body">
                 <?= $guest->name; ?>
             </div>
@@ -41,16 +41,16 @@
       <div class="row" style="font-family: 'Playfair Display', serif;">      
       <div class="col-lg-5">
         <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngwoman_38.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <h2><i>Niken Paramita</i></h2>
-            <p>Putri dari Bpk. Andri Amir (Alm.) & Ibu Asih</p>
+            <h2><i><?= $setting->bride_name; ?></i></h2>
+            <p><?= $setting->bride_parents; ?></p>
         </div><!-- /.col-lg-6 -->      
         <div class="col-lg-2 align-self-center">
             <div class="display-1">&</div>
         </div>
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngman_34.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <h2><i>M. N. Adhi Wiradharma (Aya)</i></h2>
-            <p>Putra dari Bpk. Ir. Slamet A. Wirawan & Ibu Ira Puspasari (Alm.)</p>
+            <h2><i><?= $setting->groom_name; ?></i></h2>
+            <p><?= $setting->groom_parents; ?></p>
         </div><!-- /.col-lg-6 -->
       </div>
     </div>
@@ -60,7 +60,7 @@
 <!-- COUNTDOWN -->
 <div class="container px-4 py-4 text-center" id="counter-cards">
     <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Mark the Date!</h2>
-    <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($wedding_date));?></h4>
+    <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4">
         <div class="col-lg-3">
@@ -101,18 +101,18 @@
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Akad</h2>
     <div class="py-2">
       <div class="col-lg-12 mx-auto">
-          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($akad_date)); ?></p>
-          <p>Pukul <?= $akad_time; ?></p>
-          <p><?= $wedding_address; ?></p>
+          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->akad_date)); ?></p>
+          <p>Pukul <?= $setting->akad_time; ?></p>
+          <p><?= $setting->wedding_address; ?></p>
       </div>
     </div>
 
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Resepsi</h2>
     <div class="py-2">
       <div class="col-lg-12 mx-auto">
-          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($wedding_date)); ?></p>
-          <p>Pukul <?= $wedding_time; ?></p>
-          <p><?= $wedding_address; ?></p>
+          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date)); ?></p>
+          <p>Pukul <?= $setting->wedding_time; ?></p>
+          <p><?= $setting->wedding_address; ?></p>
       </div>
 
       <div class="col-lg-12 mx-auto pb-4 ">
@@ -120,11 +120,12 @@
       </div>
     </div>
 
-    <div class="col-lg-6 mx-auto border-bottom">
+    <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Merupakan suatu kehormatan dan kebahagian bagi kami apabila rekan-rekan dan sahabat berkenan hadir dan memberikan doa restu untuk pernikahan kami.</p>
     </div>
+    <?php if($setting->health_protocol): ?>
+    <div class="col-lg-6 mx-auto text-start border-top">
       <br>
-    <div class="col-lg-6 mx-auto text-start">
       <p>Sebagai bentuk pencegahan terhadap persebaran wabah COVID 19. Dalam menghadiri penyelenggaraan pernikahan kami, diwajibkan untuk mematuhi Protokol Kesehatan yaitu: </p>
     </div>
     <div class="col-lg-4 mx-auto">
@@ -137,6 +138,7 @@
           <li>Menghadiri undangan pernikahan maksimal dua orang</li>
         </ul>
     </div>
+    <?php endif; ?>
 </div>
 <!-- /AKAD DAN LOKASI -->
 
@@ -147,20 +149,20 @@
         <div class="card">
             <div class="card-body">
             <div class="form-floating mb-3">
-                <select class="form-select" aria-label="kehadiran">
+                <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran">
                     <option value="">- - -</option>
-                    <option value="0">Tidak Hadir</option>
                     <option value="1" <?= ($guest->is_attending ? 'selected':'');?>)>Hadir</option>
+                    <option value="0">Tidak Hadir</option>
                 </select>                
                 <label for="floatingInput">Kehadiran</label>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="jumlah" value="<?= $guest->attendee; ?>">
+                <input type="number" class="form-control" id="attendee" name="attendee" value="<?= $guest->attendee; ?>">
                 <label for="floatingInput">Jumlah yang Hadir</label>
               </div>
               <div class="form-floating mb-3">
-                <button class="btn btn-outline-secondary" id="konfirmasi">Konfirmasi</button>
+                  <button class="btn btn-outline-secondary" id="konfirmasi" data-guest-id="<?= $guest->id; ?>">Konfirmasi</button>
               </div>
             
             </div>
@@ -236,15 +238,10 @@
 
 <!-- QR -->
 <div class="bg-secondary text-white px-4 py-4 text-center">
-    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Om, Minta Duit</h2>
+    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Tali Kasih</h2>
     <div class="col-md-6 mx-auto justify-content-sm-center">
-        <div class="col-md-5 mx-auto justify-content-sm-center">
-            <div class="card px-0 py-0">
-                <div class="card-body">
-                <img width="320" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Asih" preserveAspectRatio="xMidYMid slice" focusable="true">
-                </div>
-            </div>
-        </div>
+        <img class="rounded" width="360" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Kasih" preserveAspectRatio="xMidYMid slice" focusable="true">
+
     </div>    
 </div>
 <!-- /BUKU TAMU -->
@@ -257,6 +254,32 @@
 <?= view('templates/footer'); ?>
 <script type="text/javascript">
 $(document).ready( function () {
+
+    $('#konfirmasi').on('click', function(){
+        let guest_id = $(this).data('guest-id');
+        let is_attending = $('#is_attending').val();
+        let attendee = $('#attendee').val();
+        if(is_attending == ''){
+            Swal.fire('Pilih status kehadiran', '', 'error');
+            return false;
+        }
+        if(attendee == 0){
+            attendee = 1;
+        }
+        $.ajax({
+            url: `<?= base_url(); ?>/guest/konfirmasi/${guest_id}`,
+            type: "POST",
+            data: {
+                guest_id: guest_id,
+                is_attending: is_attending,
+                attendee: attendee
+            },
+            success: function(data){
+                Swal.fire('Konfirmasi diterima!', '', 'success');
+                $('#attendee').val(attendee);
+            }
+        });
+    });
     
     $('#kirim-pesan').on('click', function(){
         let guest_id = $(this).data('guest-id');
@@ -272,8 +295,7 @@ $(document).ready( function () {
             if (result.isConfirmed) {
                 
                 $.ajax({
-                    url: `<?= base_url(); ?>/guestbook/create/`,
-                    headers: {'X-Requested-With': 'XMLHttpRequest'},
+                    url: `<?= base_url('guestbook/create'); ?>`,
                     type: 'POST',
                     dataType: 'json',
                     data: { guest_id:guest_id, message:message },             
@@ -281,7 +303,7 @@ $(document).ready( function () {
                         Swal.fire('Pesan telah dikirim!', '', 'success');
 
                         message_html = 
-                            `<figure><blockquote class="blockquote text-black"><p>${message}</p></blockquote><figcaption class="blockquote-footer"><?= $guest->name; ?><cite title="Source Title">Private (Unpublished)</cite></figcaption></figure>`;
+                            `<figure><blockquote class="blockquote text-black"><p>${message}</p></blockquote><figcaption class="blockquote-footer"><?= $guest->name; ?> <cite title="Source Title">Private (Unpublished)</cite></figcaption></figure>`;
                         $('#comment-card').append(message_html);
                         $('#message').val('');
                     }
@@ -294,7 +316,7 @@ $(document).ready( function () {
 });
 
 // Set the date we're counting down to
-let countDownDate = new Date("<?= $wedding_date;?>").getTime();
+let countDownDate = new Date("<?= $setting->wedding_date;?>").getTime();
 
 // Update the count down every 1 second
 let x = setInterval(function() {

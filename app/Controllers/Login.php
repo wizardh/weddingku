@@ -34,7 +34,6 @@ class Login extends BaseController
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-        $do_remember = ($this->request->getPost('do_remember') ? '1' : '0');
 
         $data_login = $this->loginModel->get_by_username($username);
 
@@ -50,7 +49,7 @@ class Login extends BaseController
                 return redirect()->to(base_url('guest'));
             } else {
                 session()->setFlashdata('error', 'Username atau password salah!');
-                return redirect()->back();
+                return redirect()->to(base_url('login'));
             }
         } else {
             session()->setFlashdata('error', 'Username atau password salah!');
@@ -63,5 +62,49 @@ class Login extends BaseController
         $array_items = ['user_id', 'username', 'user_type', 'logged_in'];
         session()->remove($array_items);        
         return redirect()->to(base_url('login'));
+    }
+
+    public function form_password()
+    {
+        $data = array(
+            'title' => 'Form Ganti Password',
+            'page_name' => 'Form Ganti Password',
+        );
+        return view('admin/form_password', $data);
+    }
+
+    public function change_password()
+    {
+        $old_password = $this->request->getPost('old_password');
+        $new_password = $this->request->getPost('new_password');
+        $confirm_password = $this->request->getPost('confirm_password');
+
+        $data_login = $this->loginModel->get_by_username(session('username'));
+
+        if (password_verify($old_password, $data_login->password)) {
+            if ($new_password == $confirm_password) {
+                $data = array(
+                    'id'            => $data_login->id, 
+                    'password'      => $this->hash_pass($new_password), 
+                );
+                $update = $this->loginModel->update_password($data);
+                if($update)
+                {
+                    session()->setFlashdata('success', "Password berhasil diganti!");
+                    return redirect()->to(base_url('change_password'));
+                }
+                else
+                {
+                    session()->setFlashdata('error', "Password gagal diganti!");
+                    return redirect()->to(base_url('change_password'));
+                }
+            } else {
+                session()->setFlashdata('error', "Password baru dan konfirmasi password tidak sama!");
+                return redirect()->to(base_url('change_password'));
+            }
+        } else {
+            session()->setFlashdata('error', "Password lama salah!");
+            return redirect()->to(base_url('change_password'));
+        }
     }
 }

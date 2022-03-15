@@ -127,4 +127,26 @@ class Guest extends BaseController
         return redirect()->to(base_url('guest/new'));
     }    
 
+    public function konfirmasi()
+    {
+        $id = $this->request->getPost('guest_id');
+        $is_attending = $this->request->getPost('is_attending');
+        $attendee = $this->request->getPost('attendee');
+        $data = array(
+            'id'            => $id, 
+            'is_attending'  => $is_attending,
+            'attendee'      => $attendee,
+            'updated_at'    => date('Y-m-d H:i:s'),
+        );
+        $update = $this->guestModel->update_guest($data);
+        if($update)
+        {
+            echo json_encode(array('status' => 'success'));
+        }
+        else
+        {
+            echo json_encode(array('status' => 'error'));
+        }
+    }        
+
 }

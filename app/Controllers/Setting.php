@@ -31,20 +31,18 @@ class Setting extends BaseController
         $guest_id = $this->request->getPost('guest_id');
         $message = $this->request->getPost('message');
         $data = array(
-            'guest_id'         => $guest_id,
-            'message'          => $message,
             'created_at'    => date('Y-m-d H:i:s'),
         );
-        $insert = $this->guestModel->insert_guestbook($data);
+        $insert = $this->settingModel->insert_setting($data);
         if($insert)
         {
-            session()->setFlashdata('success', "Berhasil mengirim pesan ke buku tamu");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'success'));
             }
             else
             {
+                session()->setFlashdata('success', "Berhasil mengirim pesan ke buku tamu");
                 return true;
             }
         }
@@ -64,37 +62,57 @@ class Setting extends BaseController
 
     public function update($id)
     {
-        $approved = $this->request->getPost('approved');
-        $approved_by = $this->request->getPost('approved_by');
+        $updated_by = session('user_type');
+        
+        if($this->request->getPost('health_protocol') == 'on')
+        {
+            $health_protocol = 1;
+        }
+        else
+        {
+            $health_protocol = 0;
+        }
+
         $data = array(
-            'id'            => $id, 
-            'approved'      => $approved, 
-            'approved_by'   => $approved_by, 
-            'approved_at'    => date('Y-m-d H:i:s'),
+            'id'            => $id,
+            'groom_name'    => $this->request->getPost('groom_name'),
+            'groom_nickname'    => $this->request->getPost('groom_nickname'),
+            'bride_name'    => $this->request->getPost('bride_name'),
+            'bride_nickname'    => $this->request->getPost('bride_nickname'),
+            'groom_parents' => $this->request->getPost('groom_parents'),
+            'bride_parents' => $this->request->getPost('bride_parents'),            
+            'wedding_date'  => $this->request->getPost('wedding_date'),
+            'wedding_time'  => $this->request->getPost('wedding_time'),
+            'akad_date'     => $this->request->getPost('akad_date'),
+            'akad_time'     => $this->request->getPost('akad_time'),
+            'wedding_address' => $this->request->getPost('wedding_address'),
+            'akad_address' => $this->request->getPost('akad_address'),
+            'health_protocol' => $health_protocol,
+            'updated_by'    => $updated_by,
         );
-        $update = $this->guestModel->update_guestbook($data);
+        $update = $this->adminModel->update_wedding_settings($data);
         if($update)
         {
-            session()->setFlashdata('success', "Berhasil memperbarui data buku tamu");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'success'));
             }
             else
             {
-                return true;
+                session()->setFlashdata('success', "Data pernikahan berhasil diperbarui");
+                return redirect()->to(base_url('setting'));
             }
         }
         else
         {
-            session()->setFlashdata('error', "Tidak ada data yang berubah");
             if($this->request->isAJAX())
             {
                 echo json_encode(array('status' => 'error'));
             }
             else
             {
-                return false;
+                session()->setFlashdata('error', "Tidak ada data yang berubah");
+                return redirect()->to(base_url('setting'));
             }
         }
     }    

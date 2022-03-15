@@ -21,7 +21,7 @@
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body style="background-image: url('<?= base_url('assets/images/foad-roshan-TtDNu-Heh3Y-unsplash.jpg'); ?>'); background-size: cover;">
+<body style="background-image: url('<?= base_url('assets/images/foad-roshan.jpg'); ?>'); background-size: cover;">
 
     <div class="fixed-top" style="background: rgba(248,249,250,0.7) !important;">
         <header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">

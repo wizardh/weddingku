@@ -106,11 +106,6 @@
       <label for="floatingPassword">Password</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" name="do_remember" value="1"> Remember me
-      </label>
-    </div>
     <button class="w-100 btn btn-lg btn-secondary" type="submit">Login</button>
   
 </main>
