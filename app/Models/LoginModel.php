@@ -27,9 +27,18 @@ class LoginModel extends Model
     public function update_last_login($id, $ip_address)
     {
         $builder = $this->db->table('login');
-        $builder->set(['last_login' => date('Y-m-d H:i:s'), 'ip_address' => $ip_address]);
+        $builder->set(['last_login' => date('Y-m-d H:i:s'), 'last_ip' => $ip_address]);
         $builder->where('id', $id);
         $builder->update();
+
+        $builder = $this->db->table('login_attempt');
+        $builder->set([ 'attempt_no' => 0, 
+                        'is_blocked' => 0,
+                        'last_attempt' => date('Y-m-d H:i:s'),
+                    ]);
+        $builder->where('ip_address', $ip_address);
+        $builder->update();
+
         return true;
     }
 
@@ -43,8 +52,16 @@ class LoginModel extends Model
         if($query->getNumRows() > 0) {
             // update last_attempt
             $attempt = $query->getRow();
+            $is_blocked = 0;
+            if($attempt->attempt_no >= 4){
+                $is_blocked = 1;
+            }
             $builder = $this->db->table('login_attempt');
-            $builder->set(['attempt' => $attempt->attempt_no + 1, 'last_attempt' => date('Y-m-d H:i:s')]);
+            $builder->set([ 'username' => $username, 
+                            'attempt_no' => $attempt->attempt_no + 1, 
+                            'is_blocked' => $is_blocked,
+                            'last_attempt' => date('Y-m-d H:i:s'),
+                        ]);
             $builder->where('ip_address', $ip_address);
             $builder->update();
             return $attempt->attempt_no + 1;

@@ -34,6 +34,7 @@ class Login extends BaseController
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
+        $ip_address = $this->request->getIPAddress();
 
         $data_login = $this->loginModel->get_by_username($username);
 
@@ -50,26 +51,36 @@ class Login extends BaseController
     
                 return redirect()->to(base_url('guest'));
             } else {
+                $fail_attempt = $this->log_fail_attempt($username, $ip_address);
+                if($fail_attempt >= 5){
+                    session()->setFlashdata('error', 'Anda telah diblokir, segera hubungi Administrator!');
+                    return redirect()->to(base_url('login'));    
+                }elseif($fail_attempt > 0){
+                    session()->setFlashdata('error', 'Username atau password salah! <br>Anda memiliki '.$fail_attempt.'/5 kesempatan!');
+                    return redirect()->to(base_url('login'));    
+                }else{
+                    session()->setFlashdata('error', 'Username atau password salah!');
+                    return redirect()->to(base_url('login'));
+                }
+            }
+        } else {
+            $fail_attempt = $this->log_fail_attempt($username, $ip_address);
+            if($fail_attempt >= 5){
+                session()->setFlashdata('error', 'Anda telah diblokir, segera hubungi Administrator!');
+                return redirect()->to(base_url('login'));    
+            }elseif($fail_attempt > 0){
+                session()->setFlashdata('error', 'Username atau password salah! <br>Anda memiliki '.$fail_attempt.'/5 kesempatan!');
+                return redirect()->to(base_url('login'));    
+            }else{
                 session()->setFlashdata('error', 'Username atau password salah!');
                 return redirect()->to(base_url('login'));
             }
-        } else {
-            session()->setFlashdata('error', 'Username atau password salah!');
-            return redirect()->to(base_url('login'));
         }
     }
 
     public function log_fail_attempt($username, $ip_address)
     {
-        $ip_address = $this->request->getIPAddress();
-        $user_agent = $this->request->getUserAgent();
-        $attempt_time = time();
-        $data = array(
-            'ip_address' => $ip_address,
-            'user_agent' => $user_agent,
-            'attempt_time' => $attempt_time
-        );
-        $this->loginModel->insert_attempt($data);
+        return $this->loginModel->insert_attempt($username, $ip_address);
     }
 
     public function logout()

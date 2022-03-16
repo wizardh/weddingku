@@ -27,7 +27,7 @@
 </div>
 
 <!-- BRIDE & GROOM -->
-<div class="bg-secondary text-white px-4 py-4 text-center">
+<div class="bg-secondary text-white px-4 py-4 text-center" style="font-family: 'Playfair Display', serif;">
     <div class="py-4">
       <div class="col-lg-10 mx-auto">
         <figure>
@@ -38,20 +38,27 @@
         </figure>      
       </div>
       <hr class="featurette-divider">
-      <div class="row" style="font-family: 'Playfair Display', serif;">      
-      <div class="col-lg-5">
-        <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngwoman_38.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <div class="row">      
+        <div class="mb-4">
+            <h3>بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3>
+            <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i>
+            <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan putra-putri kami:</p>
+        </div>
+      
+        <div class="col-lg-5">
+            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngwoman_38.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->bride_name; ?></i></h2>
-            <p><?= $setting->bride_parents; ?></p>
-        </div><!-- /.col-lg-6 -->      
+            <p>Putri dari <?= $setting->bride_parents; ?></p>
+        </div><!-- /.col-lg-5 -->      
         <div class="col-lg-2 align-self-center">
             <div class="display-1">&</div>
         </div>
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngman_34.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->groom_name; ?></i></h2>
-            <p><?= $setting->groom_parents; ?></p>
-        </div><!-- /.col-lg-6 -->
+            <p>Putra dari <?= $setting->groom_parents; ?></p>
+        </div><!-- /.col-lg-5 -->
+
       </div>
     </div>
 </div>
@@ -151,8 +158,8 @@
             <div class="form-floating mb-3">
                 <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran">
                     <option value="">- - -</option>
-                    <option value="1" <?= ($guest->is_attending ? 'selected':'');?>)>Hadir</option>
-                    <option value="0">Tidak Hadir</option>
+                    <option value="1" <?= ($guest->is_attending ? 'selected':'');?>>Hadir</option>
+                    <option value="0" <?= ($guest->is_attending ? '':'selected');?>>Tidak Hadir</option>
                 </select>                
                 <label for="floatingInput">Kehadiran</label>
               </div>
@@ -239,8 +246,8 @@
 <!-- QR -->
 <div class="bg-secondary text-white px-4 py-4 text-center">
     <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Tali Kasih</h2>
-    <div class="col-md-6 mx-auto justify-content-sm-center">
-        <img class="rounded" width="360" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Kasih" preserveAspectRatio="xMidYMid slice" focusable="true">
+    <div class="col-md-6 col-lg-3 mx-auto justify-content-sm-center">
+        <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Kasih" preserveAspectRatio="xMidYMid slice" focusable="true">
 
     </div>    
 </div>

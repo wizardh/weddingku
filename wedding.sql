@@ -41,7 +41,7 @@ CREATE TABLE `guest` (
 /*Data for the table `guest` */
 
 insert  into `guest`(`id`,`title`,`name`,`email`,`phone`,`address`,`notes`,`invitation_code`,`invited_by`,`is_attending`,`attendee`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,'Sdr','Keluarga Cirebon',NULL,'','Cirebon','','gPD0r','Groom',1,1,'2022-03-15 12:29:36','2022-03-15 12:38:17',NULL);
+(1,'Sdr','Keluarga & Kerabat',NULL,'','Cirebon & Jakarta','','gPD0r','Groom',1,1,'2022-03-15 12:29:36','2022-03-16 06:52:33',NULL);
 
 /*Table structure for table `guestbook` */
 
@@ -80,14 +80,14 @@ CREATE TABLE `login` (
 /*Data for the table `login` */
 
 insert  into `login`(`id`,`username`,`password`,`user_type`,`last_login`,`last_ip`) values 
-(1,'aya','$2y$10$4wD.m67lvuK7D05FhD1fBuzJTN2oi5Y7H0u30jw3z5QypXP/WYf6C','Groom',NULL,NULL),
+(1,'aya','$2y$10$4wD.m67lvuK7D05FhD1fBuzJTN2oi5Y7H0u30jw3z5QypXP/WYf6C','Groom','2022-03-16 06:52:10','127.0.0.1'),
 (2,'niken','$2y$10$K8WiqbwNcPtxzDb60HrswulVx.3mAugs283LJX7ITpj8kK3hGUJNq','Bride',NULL,NULL);
 
-/*Table structure for table `login_attemp` */
+/*Table structure for table `login_attempt` */
 
-DROP TABLE IF EXISTS `login_attemp`;
+DROP TABLE IF EXISTS `login_attempt`;
 
-CREATE TABLE `login_attemp` (
+CREATE TABLE `login_attempt` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `ip_address` varchar(30) DEFAULT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `login_attemp` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `login_attemp` */
+/*Data for the table `login_attempt` */
 
 /*Table structure for table `wedding_settings` */
 
