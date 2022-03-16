@@ -45,6 +45,8 @@ class Login extends BaseController
                     'user_type' => $data_login->user_type,
                     'logged_in' => TRUE
                 ]);
+
+                $this->loginModel->update_last_login($data_login->id, $ip_address);
     
                 return redirect()->to(base_url('guest'));
             } else {
@@ -55,6 +57,19 @@ class Login extends BaseController
             session()->setFlashdata('error', 'Username atau password salah!');
             return redirect()->to(base_url('login'));
         }
+    }
+
+    public function log_fail_attempt($username, $ip_address)
+    {
+        $ip_address = $this->request->getIPAddress();
+        $user_agent = $this->request->getUserAgent();
+        $attempt_time = time();
+        $data = array(
+            'ip_address' => $ip_address,
+            'user_agent' => $user_agent,
+            'attempt_time' => $attempt_time
+        );
+        $this->loginModel->insert_attempt($data);
     }
 
     public function logout()
