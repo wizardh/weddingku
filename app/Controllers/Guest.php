@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 use App\Models\GuestModel;
+use App\Models\AdminModel;
 class Guest extends BaseController
 {
     function __construct()
     {
         helper(['form', 'cookie', 'date']);
         $this->guestModel = new GuestModel();
+        $this->adminModel = new AdminModel();
 
     }
 
@@ -23,6 +25,7 @@ class Guest extends BaseController
             'wedding_date'  => '2022-06-04',
             'page_name'     => 'Daftar Tamu',
             'guests'        => $this->guestModel->get_guests(),
+            'wsettings'     => $this->adminModel->get_wedding_settings(),
         );
 
         return view('admin/list_guest', $data);

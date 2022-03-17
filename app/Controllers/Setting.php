@@ -88,6 +88,7 @@ class Setting extends BaseController
             'wedding_address' => $this->request->getPost('wedding_address'),
             'akad_address' => $this->request->getPost('akad_address'),
             'health_protocol' => $health_protocol,
+            'invitation_template' => $this->request->getPost('invitation_template'),
             'updated_by'    => $updated_by,
         );
         $update = $this->adminModel->update_wedding_settings($data);

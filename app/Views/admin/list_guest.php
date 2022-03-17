@@ -75,18 +75,9 @@ $(document).ready( function () {
 
     $('.copy-invitation').on('click', function() {
         let invitationCode = $(this).data('invitation-code');
-        let invitationText = 
-        `Bismillahirrahmanirrahiim,
-Assalamu'alaikum wa rahmatullah wa barakaatuh,
-
-<?= base_url(); ?>/${invitationCode}
-
-Sehubungan dengan kondisi pandemi Covid-19 serta adanya pembatasan sosial, acara akad nikah hanya dihadiri oleh keluarga inti yang sangat terbatas. Kami mohon maaf tidak dapat mengundang Bapak/Ibu/Rekan-rekan secara langsung. Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Rekan-rekan berkenan meberikan doa restu dan menyaksikan akad nikah kami melalui Instagram Live Streaming. 
-
-Kami memohon doa dan restu Bapak/Ibu agar pernikahan kami berlangsung dengan lancar. Terima kasih. Wassalamu'alaikum wa rahmatullah wa barakaatuh.
-
-Salam Takzim,
-Niken & Aya`;
+        let invitationURL = `<?= base_url(); ?>/${invitationCode}`;
+        let invitationTemplate = `<?= $wsettings->invitation_template; ?>`;
+        let invitationText = invitationTemplate.replace('{invitation_url}', invitationURL);
 
         navigator.clipboard.writeText(invitationText);
 

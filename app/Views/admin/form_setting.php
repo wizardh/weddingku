@@ -126,9 +126,14 @@
                 <label class="form-check-label" for="health_protocol">Show Covid-19 Health Protocol Information</label>
               </div>
             </div>
+            
+            <div class="col-sm-12">
+              <label for="name" class="form-label">Invitation Text Template</label>
+              <textarea class="form-control" id="invitation_template" name="invitation_template" rows="4" required><?= $wsettings->invitation_template; ?></textarea>
 
+            </div>
 
-          <hr class="my-4">
+            <hr class="my-4">
 
             <div class="col-4">
               <input type="submit" class="w-100 btn btn-primary btn-lg" value="Save">
