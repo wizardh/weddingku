@@ -14,14 +14,49 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+    @keyframes zoom-out {
+        0% {
+            transform: scale(0, 0);
+        }
+        50% {
+            transform: scale(1, 1);
+        }
+    }    
+
+    @media (prefers-reduced-motion: no-preference) {
+        .zoom-animation {
+            animation: zoom-out 2s 1;
+        }
+    }
+
+    .parallax {
+        /* The image used */
+        background-image: url("<?= base_url('assets/images/foad-roshan.jpg'); ?>");
+
+        /* Set a specific height */
+        min-height: 500px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     </style> 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">    
 </head>
-<body style="background-image: url('<?= base_url('assets/images/foad-roshan.jpg'); ?>'); background-size: cover;">
+<body class="parallax">
 
     <div class="fixed-top" style="background: rgba(248,249,250,0.7) !important;">
         <header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">

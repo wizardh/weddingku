@@ -7,8 +7,8 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-4 my-auto text-center" style="padding-top: 80px;" id="acara">
-    <div class="mt-4" style="font-family: 'Playfair Display', serif;">
+<div class="pt-auto pb-4 my-auto text-center zoom-wrapper" style="padding-top: 80px;" id="acara">
+    <div class="mt-4 zoom" style="font-family: 'Playfair Display', serif;">
         <h4 class="lead">The wedding of</h4>
         <h1 class="display-4 fw-bold"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
         <h4 class="lead"><?= date("F jS, Y", strtotime($setting->wedding_date));?></h4>
@@ -255,11 +255,70 @@
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 <!-- widget for music player goes here -->
+    <div data-video="eq4aExkkuTs" data-autoplay="1" data-loop="1" id="youtube-audio"></div> 
+    <script src="https://www.youtube.com/iframe_api"></script> 
+    <script>
+    function onYouTubeIframeAPIReady(){
+        var e=document.getElementById("youtube-audio");
+
+        var t=document.createElement("img");
+        t.setAttribute("id","youtube-icon");
+        t.style.cssText="cursor:pointer;cursor:hand";
+        e.appendChild(t);
+
+        var a=document.createElement("div");
+        a.setAttribute("id","youtube-player");
+        e.appendChild(a);
+        
+        var o=function(e){
+            var a = e ? "lNq4jZd.png": "mn4k5d8.png";
+            t.setAttribute("src","https://i.imgur.com/"+a)
+        };
+
+        e.onclick=function(){
+            r.getPlayerState()===YT.PlayerState.PLAYING||r.getPlayerState()===YT.PlayerState.BUFFERING ? (r.pauseVideo(),o(!1)):(r.playVideo(),o(!0));
+        };
+
+        var r=new YT.Player("youtube-player",{
+            height:"0",
+            width:"0",
+            videoId:e.dataset.video,
+            playerVars:{
+                "autoplay":e.dataset.autoplay,
+                "loop":e.dataset.loop
+            },
+            events:{
+                "onReady":function(e){
+                    r.setPlaybackQuality("small"),o(r.getPlayerState()!==YT.PlayerState.CUED);
+                },
+                "onStateChange":function(e){
+                    e.data===YT.PlayerState.ENDED&&o(!1);
+                }
+            }
+        });
+    }        
+    </script>
 </div>
 
 
 <?= view('templates/footer'); ?>
 <script type="text/javascript">
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const zoom = entry.target.querySelector('.zoom');
+
+    if (entry.isIntersecting) {
+      zoom.classList.add('zoom-animation');
+	  return; // if we added the class, exit the function
+    }
+
+    // We're not intersecting, so remove the class!
+    zoom.classList.remove('zoom-animation');
+  });
+});
+
+observer.observe(document.querySelector('.zoom-wrapper'));
+
 $(document).ready( function () {
 
     $('#konfirmasi').on('click', function(){
