@@ -69,7 +69,7 @@
 
         @media (max-width: 767.98px) {
         .sidebar {
-            top: 5rem;
+            top: 0;
         }
         }
 

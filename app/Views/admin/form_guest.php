@@ -66,7 +66,7 @@
           ?>
             <div class="col-12">
               <label for="invitation_code" class="form-label">Invitation Code </label>
-              <input type="text" class="form-control" id="invitation_code" name="invitation_code" value="<?= $guest->invitation_code; ?>" disabled>
+              <input type="text" class="form-control" id="invitation_code" name="invitation_code" value="<?= $guest->invitation_code; ?>" required>
             </div>
 
             <div class="col-12">
@@ -75,7 +75,7 @@
             </div>
 
             <div class="col-sm-6">
-              <label for="title" class="form-label">Attending </label>
+              <label for="title" class="form-label">Is Attending </label>
               <input type="text" class="form-control" id="is_attending" name="is_attending" value="<?= ($guest->is_attending == 0 & $guest->attendee == 0 ? '-' : ($guest->is_attending == 1 ? 'Hadir' : 'Tidak')); ?>" disabled>
             </div>
 

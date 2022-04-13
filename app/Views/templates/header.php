@@ -32,7 +32,7 @@
 
     .parallax {
         /* The image used */
-        background-image: url("<?= base_url('assets/images/foad-roshan.jpg'); ?>");
+        background-image: url("<?= base_url('assets/images/background.jpg'); ?>");
 
         /* Set a specific height */
         min-height: 500px;
