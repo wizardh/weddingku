@@ -255,7 +255,12 @@
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 <!-- widget for music player goes here -->
-    <div data-video="eq4aExkkuTs" data-autoplay="1" data-loop="1" id="youtube-audio"></div> 
+<?php 
+    $youtube_ids = $setting->youtube_ids;
+    $youtube_ids = explode(',', $youtube_ids);
+    $youtube_id = $youtube_ids[array_rand($youtube_ids)];
+?>
+    <div data-video="<?= $youtube_id; ?>" data-autoplay="1" data-loop="1" id="youtube-audio"></div> 
     <script src="https://www.youtube.com/iframe_api"></script> 
     <script>
     function onYouTubeIframeAPIReady(){

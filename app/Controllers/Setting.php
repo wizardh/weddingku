@@ -26,40 +26,6 @@ class Setting extends BaseController
         return view('admin/form_setting', $data);
     }
 
-    public function create()
-    {
-        $guest_id = $this->request->getPost('guest_id');
-        $message = $this->request->getPost('message');
-        $data = array(
-            'created_at'    => date('Y-m-d H:i:s'),
-        );
-        $insert = $this->settingModel->insert_setting($data);
-        if($insert)
-        {
-            if($this->request->isAJAX())
-            {
-                echo json_encode(array('status' => 'success'));
-            }
-            else
-            {
-                session()->setFlashdata('success', "Berhasil mengirim pesan ke buku tamu");
-                return true;
-            }
-        }
-        else
-        {
-            session()->setFlashdata('error', "Tidak ada data yang berubah");
-            if($this->request->isAJAX())
-            {
-                echo json_encode(array('status' => 'error'));
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-
     public function update($id)
     {
         $updated_by = session('user_type');
@@ -89,6 +55,7 @@ class Setting extends BaseController
             'akad_address' => $this->request->getPost('akad_address'),
             'health_protocol' => $health_protocol,
             'invitation_template' => $this->request->getPost('invitation_template'),
+            'youtube_ids' => $this->request->getPost('youtube_ids'),
             'updated_by'    => $updated_by,
         );
         $update = $this->adminModel->update_wedding_settings($data);
