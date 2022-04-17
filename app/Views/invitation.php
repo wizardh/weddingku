@@ -19,7 +19,7 @@
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <div class="card" style="min-width: 240px;">
             <div class="lead card-body">
-                <?= $guest->name; ?>
+                <?= $guest->title . ' ' . $guest->name; ?>
             </div>
         </div>
       </div>
@@ -46,16 +46,16 @@
         </div>
       
         <div class="col-lg-5">
-            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngwoman_38.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <h2><i><?= $setting->bride_name; ?></i></h2>
+            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/bride.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h2><i><?= $setting->bride_name . ' (' . $setting->bride_nickname . ')'; ?></i></h2>
             <p>Putri dari <?= $setting->bride_parents; ?></p>
         </div><!-- /.col-lg-5 -->      
         <div class="col-lg-2 align-self-center">
             <div class="display-1">&</div>
         </div>
         <div class="col-lg-5">
-            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/youngman_34.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <h2><i><?= $setting->groom_name; ?></i></h2>
+            <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/groom.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <h2><i><?= $setting->groom_name . ' (' . $setting->groom_nickname . ')'; ?></i></h2>
             <p>Putra dari <?= $setting->groom_parents; ?></p>
         </div><!-- /.col-lg-5 -->
 
@@ -144,6 +144,12 @@
           <li>Tidak membawa anak kecil dibawah 5 tahun</li>
           <li>Menghadiri undangan pernikahan maksimal dua orang</li>
         </ul>
+    </div>
+    <div class="col-md-12">
+        <img class="rounded img-fluid col-sm-3" style="width:200px;max-width:40%" src="<?= base_url('assets/images/covid/1.png'); ?>" aria-label="covid1" preserveAspectRatio="xMidYMid slice" focusable="true">
+        <img class="rounded img-fluid col-sm-3" style="width:200px;max-width:40%" src="<?= base_url('assets/images/covid/2.png'); ?>" aria-label="covid1" preserveAspectRatio="xMidYMid slice" focusable="true">
+        <img class="rounded img-fluid col-sm-3" style="width:200px;max-width:40%" src="<?= base_url('assets/images/covid/3.png'); ?>" aria-label="covid1" preserveAspectRatio="xMidYMid slice" focusable="true">
+        <img class="rounded img-fluid col-sm-3" style="width:200px;max-width:40%" src="<?= base_url('assets/images/covid/4.png'); ?>" aria-label="covid1" preserveAspectRatio="xMidYMid slice" focusable="true">
     </div>
     <?php endif; ?>
 </div>
@@ -285,6 +291,7 @@
         };
 
         var r=new YT.Player("youtube-player",{
+            origin: "<?= base_url(); ?>", 
             height:"0",
             width:"0",
             videoId:e.dataset.video,

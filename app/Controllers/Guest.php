@@ -107,6 +107,7 @@ class Guest extends BaseController
         $phone = $this->request->getPost('phone');
         $address = $this->request->getPost('address');
         $notes = $this->request->getPost('notes');
+        $invitation_code = $this->request->getPost('invitation_code');
         $data = array(
             'id'            => $id, 
             'title'         => $title,
@@ -115,6 +116,7 @@ class Guest extends BaseController
             'phone'         => $phone,
             'address'       => $address,
             'notes'         => $notes,
+            'invitation_code' => $invitation_code,
             'updated_at'    => date('Y-m-d H:i:s'),
         );
         $update = $this->guestModel->update_guest($data);
