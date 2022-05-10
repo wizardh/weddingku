@@ -130,7 +130,14 @@
             <div class="col-sm-12">
               <label for="name" class="form-label">Invitation Text Template</label>
               <textarea class="form-control" id="invitation_template" name="invitation_template" rows="4" required><?= $wsettings->invitation_template; ?></textarea>
+            </div>
 
+            <div class="col-sm-12">
+              <label for="name" class="form-label">YouTube Video ID for BGM (separate multiple IDs with comma, will be played randomly)</label>
+              <input type="text" class="form-control" id="youtube_ids" name="youtube_ids" placeholder="" value="<?= $wsettings->youtube_ids; ?>" required>
+              <div class="invalid-feedback">
+                Valid ID is required.
+              </div>
             </div>
 
             <hr class="my-4">
