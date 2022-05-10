@@ -29,20 +29,11 @@
 <!-- BRIDE & GROOM -->
 <div class="bg-secondary text-white px-4 py-4 text-center" style="font-family: 'Playfair Display', serif;">
     <div class="py-4">
-      <div class="col-lg-10 mx-auto">
-        <figure>
-            <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
-            <figcaption class="blockquote-footer text-white">
-            (QS. Ar-Ruum: 21)
-            </figcaption>
-        </figure>      
-      </div>
-      <hr class="featurette-divider">
       <div class="row">      
         <div class="mb-4">
             <h3>بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3>
             <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i>
-            <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan putra-putri kami:</p>
+            <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan kami:</p>
         </div>
       
         <div class="col-lg-5">
@@ -66,10 +57,10 @@
 
 <!-- COUNTDOWN -->
 <div class="container px-4 py-4 text-center" id="counter-cards">
-    <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Mark the Date!</h2>
+    <h1 class="pb-2" style="font-family: 'Playfair Display', serif;">Mark the Date!</h1>
     <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date));?></h4>
 
-    <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4">
+    <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4 justify-content-center" id="countdown">
         <div class="col-lg-3">
             <div class="card bg-secondary text-white">
                 <div class="card-body display-6 px-0" id="days">                    
@@ -105,26 +96,40 @@
 
 <!-- AKAD DAN LOKASI -->
 <div class="bg-secondary text-white px-4 py-4 text-center" id="lokasi">
-    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Akad</h2>
-    <div class="py-2">
-      <div class="col-lg-12 mx-auto">
-          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->akad_date)); ?></p>
-          <p>Pukul <?= $setting->akad_time; ?></p>
-          <p><?= $setting->wedding_address; ?></p>
-      </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-2"></div>
+        <div class="card col-md-4 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
+            <div class="card-body">
+                <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Akad Nikah</h1>
+                <div class="py-2">
+                    <div class="col-lg-12 mx-auto">
+                        <p><i class="bi bi-calendar"></i> &nbsp; <?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->akad_date)); ?></p>
+                        <p><i class="bi bi-clock"></i> &nbsp; Pukul <?= $setting->akad_time; ?> WIB</p>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="card col-md-4 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
+            <div class="card-body">
+                <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Resepsi</h1>
+                <div class="py-2">
+                    <div class="col-lg-12 mx-auto">
+                        <p><i class="bi bi-calendar"></i> &nbsp; <?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date)); ?></p>
+                        <p><i class="bi bi-clock"></i> &nbsp; Pukul <?= $setting->wedding_time; ?> WIB</p>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+
     </div>
 
-    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Resepsi</h2>
-    <div class="py-2">
-      <div class="col-lg-12 mx-auto">
-          <p><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date)); ?></p>
-          <p>Pukul <?= $setting->wedding_time; ?></p>
-          <p><?= $setting->wedding_address; ?></p>
-      </div>
-
-      <div class="col-lg-12 mx-auto pb-4 ">
+    <h1 class="pt-4" style="font-family: 'Playfair Display', serif;">Lokasi Acara</h1>
+    <i class="bi bi-pin-map"></i>
+    <p><?= $setting->wedding_address;?></p>
+    <div class="col-lg-12 mx-auto pt-4 pb-4 ">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.124865820308!2d106.87684175000001!3d-6.226605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f53ae0e3ca29%3A0xfba9636463a1ce8b!2sIS%20PLAZA%20BALLROOM!5e0!3m2!1sen!2sid!4v1647143521553!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
     </div>
 
     <div class="col-lg-6 mx-auto">
@@ -133,17 +138,7 @@
     <?php if($setting->health_protocol): ?>
     <div class="col-lg-6 mx-auto text-start border-top">
       <br>
-      <p>Sebagai bentuk pencegahan terhadap persebaran wabah COVID 19. Dalam menghadiri penyelenggaraan pernikahan kami, diwajibkan untuk mematuhi Protokol Kesehatan yaitu: </p>
-    </div>
-    <div class="col-lg-4 mx-auto">
-        <ul class="text-start">
-          <li>Tamu undangan wajib memakai masker</li>
-          <li>Hindari /Tidak berjabat tangan baik dengan mempelai ataupun tamu undangan lain</li>
-          <li>Mencuci tangan menggunakan sabun/hand sanitizer yang telah disediakan</li>
-          <li>Tidak berkerumun dan saling menjaga jarak sesama tamu undangan (social distancing)</li>
-          <li>Tidak membawa anak kecil dibawah 5 tahun</li>
-          <li>Menghadiri undangan pernikahan maksimal dua orang</li>
-        </ul>
+      <p>Sebagai bentuk pencegahan terhadap persebaran wabah COVID 19, mohon patuhi selalu segala protokol kesehatan yang ada di tempat acara.</p>
     </div>
     <div class="col-md-12">
         <img class="rounded img-fluid col-sm-3" style="width:200px;max-width:40%" src="<?= base_url('assets/images/covid/1.png'); ?>" aria-label="covid1" preserveAspectRatio="xMidYMid slice" focusable="true">
@@ -157,7 +152,7 @@
 
 <!-- KONFIRMASI -->
 <div class="container px-4 py-4 text-center" id="buku-tamu">
-    <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Konfirmasi Kehadiran</h2>
+    <h1 class="pb-4" style="font-family: 'Playfair Display', serif;">Konfirmasi Kehadiran & Kirim Pesan</h1>
     <div class="col-md-5 mx-auto justify-content-sm-center">
         <div class="card">
             <div class="card-body">
@@ -169,25 +164,32 @@
                 </select>                
                 <label for="floatingInput">Kehadiran</label>
               </div>
+            
+            </div>
+        </div>
+    </div>
 
-              <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="attendee" name="attendee" value="<?= $guest->attendee; ?>">
-                <label for="floatingInput">Jumlah yang Hadir</label>
+    <div class="col-md-5 mx-auto justify-content-sm-center">
+        <div class="card">
+            <div class="card-body">
+              <div class="mb-3">                  
+                <textarea class="form-control" id="message" rows="3"></textarea>
               </div>
               <div class="form-floating mb-3">
-                  <button class="btn btn-outline-secondary" id="konfirmasi" data-guest-id="<?= $guest->id; ?>">Konfirmasi</button>
+                <button class="btn btn-outline-secondary" id="kirim-pesan" data-guest-id="<?= $guest->id; ?>">Kirim Pesan</button>
               </div>
             
             </div>
         </div>
     </div>
+    
 
 </div>
 <!-- /KONFIRMASI -->
 
 <!-- BUKU TAMU -->
 <div class="bg-secondary text-white px-4 py-4 text-center">
-    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Buku Tamu</h2>
+    <h1 class="pb-4" style="font-family: 'Playfair Display', serif;">Buku Tamu</h1>
     <div class="col-md-6 mx-auto justify-content-sm-center">
         <div class="card" style="height: 360px;">
             <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 360px;">
@@ -229,35 +231,76 @@
 </div>
 <!-- /BUKU TAMU -->
 
-<!-- FORM BUKU TAMU -->
-<div class="container px-4 py-4 text-center" id="confirm-card">
-    <h2 class="pb-2" style="font-family: 'Playfair Display', serif;">Kirimkan Pesan</h2>
-    <div class="col-md-5 mx-auto justify-content-sm-center">
-        <div class="card">
-            <div class="card-body">
-              <div class="mb-3">                  
-                <textarea class="form-control" id="message" rows="3"></textarea>
-              </div>
-              <div class="form-floating mb-3">
-                <button class="btn btn-outline-secondary" id="kirim-pesan" data-guest-id="<?= $guest->id; ?>">Kirim</button>
-              </div>
-            
-            </div>
-        </div>
+<!-- WISHLIST -->
+<div class="container px-4 py-4 text-center" id="wishlist">
+    <h1 class="pb-4" style="font-family: 'Playfair Display', serif;">Wishlist</h1>
+    <h4 class="lead">Kami sangat bahagia dan berterima kasih untuk menerima hadiah :)</h4>
+    <p>
+    <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Lihat Wishlist
+    </button>
+    </p>
+    <div class="collapse col-md-6 mx-auto justify-content-sm-center" id="collapseExample">
+            <div class="card">
+                <div class="card-body" style="overflow-x: auto; ">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 mx-auto ">
+                            <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
+                        </div>
+                        <div class="col-md-6 col-lg-3 mx-auto ">
+                            <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist"    focusable="true">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4 class="pt-4">Wishlist Produk</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Estimasi Harga</th>
+                            <th scope="col">Referensi</th>
+                            <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Rumah<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail rounded float-end" alt="rumah"></td>
+                            <td><?= number_format(10000000000, 0, ',','.');?></td>
+                            <td>Link Toped</td>
+                            <td><button type="button" class="btn btn-success" style="width: 6em">Open</button</td>
+                            </tr>
+                            <tr>
+                            <td>Mobil<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail rounded float-end" alt="mobil"></td>
+                            <td><?= number_format(1000000000, 0, ',','.');?></td>
+                            <td>Link Toped</td>
+                            <td><button type="button" class="btn btn-warning" style="width: 6em" disabled>Booked!</button</td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+
+                    </div>
+
+                </div>
+            </div>        
     </div>
 
 </div>
-<!-- /FORM BUKU TAMU -->
-
-<!-- QR -->
-<div class="bg-secondary text-white px-4 py-4 text-center">
-    <h2 class="pb-2 border-bottom" style="font-family: 'Playfair Display', serif;">Tali Kasih</h2>
-    <div class="col-md-6 col-lg-3 mx-auto justify-content-sm-center">
-        <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Tali Kasih" preserveAspectRatio="xMidYMid slice" focusable="true">
-
-    </div>    
+<!-- /WISHLIST -->
+<!-- BRIDE & GROOM -->
+<div class="bg-secondary text-white px-4 py-4 text-center" style="font-family: 'Playfair Display', serif;">
+    <h1 class="pb-4" style="font-family: 'Playfair Display', serif;">Terima Kasih!</h1>
+    <div class="py-4">
+      <div class="col-lg-10 mx-auto">
+        <figure>
+            <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
+            <figcaption class="blockquote-footer text-white">
+            (QS. Ar-Ruum: 21)
+            </figcaption>
+        </figure>      
+      </div>
+    </div>
 </div>
-<!-- /BUKU TAMU -->
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 <!-- widget for music player goes here -->
@@ -328,17 +371,14 @@ observer.observe(document.querySelector('.zoom-wrapper'));
 
 $(document).ready( function () {
 
-    $('#konfirmasi').on('click', function(){
+    $('#is_attending').on('change', function(){
         let guest_id = $(this).data('guest-id');
         let is_attending = $('#is_attending').val();
-        let attendee = $('#attendee').val();
+        let attendee = 1;
         if(is_attending == ''){
-            Swal.fire('Pilih status kehadiran', '', 'error');
-            return false;
+            is_attending = 0;
         }
-        if(attendee == 0){
-            attendee = 1;
-        }
+
         $.ajax({
             url: `<?= base_url(); ?>/guest/konfirmasi/${guest_id}`,
             type: "POST",
@@ -406,16 +446,26 @@ let x = setInterval(function() {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Display the result in the element with id="demo"
-    $("#days").html(days); 
-    $("#hours").html(hours); 
-    $("#minutes").html(minutes);
-    $("#seconds").html(seconds);
-
     // If the count down is finished, write some text
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+
+        // $("#days").html(0); 
+        // $("#hours").html(0); 
+        // $("#minutes").html(0);
+        // $("#seconds").html(0);
+        $("#countdown").html(`<div class="card bg-secondary text-white">
+                <div class="card-body display-6 px-0" id="days">Hari ini!
+                </div>
+            </div>`);
+    }
+    else{
+        // Display the result in the element with id="demo"
+        $("#days").html(days); 
+        $("#hours").html(hours); 
+        $("#minutes").html(minutes);
+        $("#seconds").html(seconds);
+
     }
 }, 1000);
 </script>
