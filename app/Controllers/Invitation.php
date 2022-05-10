@@ -25,7 +25,7 @@ class Invitation extends BaseController
         $setting = $this->adminModel->get_wedding_settings();
 
         $data = array(
-            'title'             => 'Home',
+            'title'             => 'The Wedding of Niken & Aya — Invitation',
             'setting'           => $setting,
             'guest'             => $guest,
             'guestbook'         => $guestbook,

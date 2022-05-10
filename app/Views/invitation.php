@@ -98,8 +98,8 @@
 <div class="bg-secondary text-white px-4 py-4 text-center" id="lokasi">
 
     <div class="row justify-content-center">
-        <div class="col-md-2"></div>
-        <div class="card col-md-4 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
+        <div class="col-md-3"></div>
+        <div class="card col-md-3 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
             <div class="card-body">
                 <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Akad Nikah</h1>
                 <div class="py-2">
@@ -110,7 +110,7 @@
                 </div>        
             </div>
         </div>
-        <div class="card col-md-4 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
+        <div class="card col-md-3 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
             <div class="card-body">
                 <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Resepsi</h1>
                 <div class="py-2">
@@ -121,7 +121,7 @@
                 </div>        
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
 
     </div>
 
@@ -244,11 +244,15 @@
             <div class="card">
                 <div class="card-body" style="overflow-x: auto; ">
                     <div class="row">
-                        <div class="col-md-6 col-lg-3 mx-auto ">
-                            <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
+                        <div class="col-md-6 mx-auto">
+                            <a class="image-link" data-bs-toggle="modal" data-src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" title="QR BCA Niken">
+                            <img class="rounded img-fluid" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
+                            </a>
                         </div>
-                        <div class="col-md-6 col-lg-3 mx-auto ">
-                            <img class="rounded img-fluid"  src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist"    focusable="true">
+                        <div class="col-md-6 mx-auto">
+                            <a class="image-link" data-bs-toggle="modal" data-src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" title="QR BCA Niken">
+                            <img class="rounded img-fluid" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
+                            </a>
                         </div>
                     </div>
                     <div class="row">
@@ -264,13 +268,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                            <td>Rumah<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail rounded float-end" alt="rumah"></td>
+                            <td>Rumah<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
                             <td><?= number_format(10000000000, 0, ',','.');?></td>
                             <td>Link Toped</td>
                             <td><button type="button" class="btn btn-success" style="width: 6em">Open</button</td>
                             </tr>
                             <tr>
-                            <td>Mobil<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail rounded float-end" alt="mobil"></td>
+                            <td>Mobil<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
                             <td><?= number_format(1000000000, 0, ',','.');?></td>
                             <td>Link Toped</td>
                             <td><button type="button" class="btn btn-warning" style="width: 6em" disabled>Booked!</button</td>
@@ -300,6 +304,16 @@
         </figure>      
       </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body image-popup-body">
+      </div>      
+    </div>
+  </div>
 </div>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
@@ -375,6 +389,13 @@ const observer = new IntersectionObserver(entries => {
 observer.observe(document.querySelector('.zoom-wrapper'));
 
 $(document).ready( function () {
+    $('.image-link').on('click', function(){
+        let url = $(this).data('src');
+        let html = `<img class="rounded img-fluid" src="${url}" focusable="true">`;
+        $('.image-popup-body').html(html);
+        $('#popupModal').modal('show');
+
+    });
 
     $('#is_attending').on('change', function(){
         let guest_id = $(this).data('guest-id');
