@@ -7,8 +7,8 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="padding-top: 200px; padding-bottom: 170px;" id="acara">
-    <div class="mt-4 zoom" style="font-family: 'Playfair Display', serif;">
+<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="padding-top: 200px; padding-bottom: 200px;" id="acara">
+    <div class="zoom" style="font-family: 'Playfair Display', serif;">
         <h1 >The wedding of</h1>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
         <h3 ><?= date("F jS, Y", strtotime($setting->wedding_date));?></h3>

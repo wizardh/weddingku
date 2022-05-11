@@ -52,7 +52,7 @@
 </head>
 <body class="parallax">
 
-    <div class="fixed-top" style="background: rgba(248,249,250,0.7) !important;">
+    <!-- <div class="fixed-top" style="background: rgba(248,249,250,0.7) !important;">
         <header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
         <ul class="nav col-12 col-md-auto justify-content-center mb-md-0" style="font-family: 'Playfair Display', serif;">
             <li><a href="#acara" class="nav-link px-2 link-secondary">Acara</a></li>
@@ -60,4 +60,4 @@
             <li><a href="#buku-tamu" class="nav-link px-2 link-dark">Buku Tamu</a></li>
         </ul>
         </header>
-    </div>
+    </div> -->
