@@ -7,7 +7,7 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="padding-top: 200px; padding-bottom: 200px;" id="acara">
+<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: 25vh;" id="acara">
     <div class="zoom" style="font-family: 'Playfair Display', serif;">
         <h1 >The wedding of</h1>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
@@ -242,21 +242,20 @@
     </p>
     <div class="collapse py-4 col-md-6 mx-auto justify-content-sm-center" id="collapseExample">
         <div class="card">
-            <div class="card-body" style="overflow-x: auto; ">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 mx-auto">
-                        <a class="image-link" data-bs-toggle="modal" data-src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" title="QR BCA Niken">
-                        <img class="rounded img-fluid" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
-                        </a>
-                    </div>
                     <div class="col-md-6 mx-auto">
                         <a class="image-link" data-bs-toggle="modal" data-src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" title="QR BCA Niken">
                         <img class="rounded img-fluid" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
                         </a>
                     </div>
                 </div>
-                <div class="row">
-                    <h4 class="pt-4">Wishlist Produk</h4>
+                <hr>
+                <div class="row" style="overflow-x: auto; ">
+                <h4>Wishlist Produk</h4>
+                <?php 
+                    if( !empty($wishlist)):
+                ?>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -267,21 +266,33 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        foreach($wishlist as $w):
+                        ?>
                         <tr>
-                        <td>Rumah<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
-                        <td><?= number_format(10000000000, 0, ',','.');?></td>
-                        <td>Link Toped</td>
+                        <td><?= $w->description; ?><br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
+                        <td>Rp <?= number_format($w->estimated_price, 0, ',','.');?></td>
+                        <td><a href="<?= $w->reference_link; ?>">Link Marketplace</a></td>
+                        <?php
+                            if($w->status == 'open'): 
+                        ?>
                         <td><button type="button" class="btn btn-success" style="width: 6em">Open</button</td>
-                        </tr>
-                        <tr>
-                        <td>Mobil<br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
-                        <td><?= number_format(1000000000, 0, ',','.');?></td>
-                        <td>Link Toped</td>
+                        <?php
+                            else:
+                        ?>
                         <td><button type="button" class="btn btn-warning" style="width: 6em" disabled>Booked!</button</td>
+                        <?php 
+                            endif;
+                        ?>
                         </tr>
-                        <tr>
+                        <?php 
+                        endforeach;
+                        ?>
                     </tbody>
                 </table>
+                <?php else: ?>
+                    <p class="lead">Belum ada wishlist, terima kasih sudah melihat!</p>
+                <?php endif; ?>
 
                 </div>
 

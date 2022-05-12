@@ -23,6 +23,7 @@ class Invitation extends BaseController
         $guestbook = $this->guestModel->get_guestbooks();
         $private_guestbook = $this->guestModel->get_private_guestbooks($guest->id);
         $setting = $this->adminModel->get_wedding_settings();
+        $wishlist = $this->adminModel->get_wishlist();
 
         $data = array(
             'title'             => 'The Wedding of Niken & Aya — Invitation',
@@ -30,6 +31,7 @@ class Invitation extends BaseController
             'guest'             => $guest,
             'guestbook'         => $guestbook,
             'private_guestbook' => $private_guestbook,
+            'wishlist'          => $wishlist,
         );
         return view('invitation', $data);
     }

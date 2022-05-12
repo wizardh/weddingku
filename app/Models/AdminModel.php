@@ -29,4 +29,13 @@ class AdminModel extends Model
         return $this->db->affectedRows();
     }
 
+    public function get_wishlist()
+    {
+        $builder = $this->db->table('wishlist');
+        $builder->where('status != ', 'hidden');
+        $builder->select('*');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
 }
