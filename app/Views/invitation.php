@@ -234,7 +234,7 @@
 <!-- WISHLIST -->
 <div class="container px-4 py-4 text-center" id="wishlist">
     <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Wishlist</h1>
-    <h4 class="lead">Kami sangat bahagia dan berterima kasih untuk menerima hadiah :)</h4>
+    <h4 class="lead">Kami sangat bahagia dan berterima kasih atas hadiah yang diterima 🥰</h4>
     <p class="py-4">
     <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Lihat Wishlist
@@ -245,6 +245,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
+                        BCA - Niken Paramita <br> 342 333 8012
                         <a class="image-link" data-bs-toggle="modal" data-src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" title="QR BCA Niken">
                         <img class="rounded img-fluid" src="<?= base_url('assets/images/QRku_Niken.JPG'); ?>" aria-label="Wishlist" focusable="true">
                         </a>
