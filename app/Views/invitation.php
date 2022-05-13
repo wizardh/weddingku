@@ -270,7 +270,7 @@
                         foreach($wishlist as $w):
                         ?>
                         <tr>
-                        <td><?= $w->description; ?><br><img src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('assets/images/internet_404_page_not_found.png'); ?>"></td>
+                        <td><?= $w->description; ?><br><img src="<?= base_url('uploads/'.$w->image); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('uploads/'.$w->image); ?>" ></td>
                         <td>Rp <?= number_format($w->estimated_price, 0, ',','.');?></td>
                         <td><a href="<?= $w->reference_link; ?>">Link Marketplace</a></td>
                         <?php

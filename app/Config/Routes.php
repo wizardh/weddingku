@@ -42,6 +42,11 @@ $routes->resource('guest');
 $routes->resource('guestbook');
 $routes->resource('setting');
 
+$routes->get('wishlist/delete/(:alphanum)', 'Wishlist::delete/$1');
+$routes->get('wishlist/hide/(:alphanum)', 'Wishlist::hide/$1');
+$routes->resource('wishlist');
+
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/(:alphanum)', 'Invitation::index/$1');
