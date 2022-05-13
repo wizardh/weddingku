@@ -180,6 +180,12 @@
             </a>
           </li>
           <li class="nav-item fs-6">
+            <a class="nav-link" href="<?= base_url('wishlist'); ?>">
+            <i class="bi bi-bag-heart"></i>
+              Wishlist
+            </a>
+          </li>
+          <li class="nav-item fs-6">
             <a class="nav-link" href="<?= base_url('setting'); ?>">
             <i class="bi bi-gear"></i>
               Settings
