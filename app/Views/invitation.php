@@ -157,7 +157,7 @@
         <div class="card">
             <div class="card-body">
             <div class="form-floating mb-3">
-                <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran">
+                <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran" data-guest-id="<?= $guest->id; ?>">
                     <option value="" disabled>- - -</option>
                     <option value="1" <?= ($guest->is_attending ? 'selected':'');?>>Hadir</option>
                     <option value="0" <?= ($guest->is_attending ? '':'selected');?>>Tidak Hadir</option>
@@ -427,6 +427,7 @@ $(document).ready( function () {
                 attendee: attendee
             },
             success: function(data){
+                console.log(data);
                 Swal.fire('Konfirmasi diterima!', '', 'success');
                 $('#attendee').val(attendee);
             }
