@@ -51,7 +51,7 @@ class GuestModel extends Model
     {
         $builder = $this->db->table('guestbook gb');
         $builder->select('g.title, g.address, g.name, gb.*');
-        $builder->join('guest g', 'g.id=gb.guest_id');
+        $builder->join('guest g', 'g.id=gb.guest_id', 'left');
         if( $is_filtered )
         {
             $builder->where('gb.approved', 1);
@@ -66,6 +66,17 @@ class GuestModel extends Model
         $builder->select('g.title, g.address, g.name, gb.*');
         $builder->join('guest g', 'g.id=gb.guest_id');
         $builder->where('gb.guest_id', $guest_id);
+        $builder->where('gb.approved', 0);
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    public function get_ip_guestbooks($ip_address)
+    {
+        $builder = $this->db->table('guestbook gb');
+        $builder->select('*');
+        $builder->where('gb.ip_address', $ip_address);
         $builder->where('gb.approved', 0);
 
         $query = $builder->get();

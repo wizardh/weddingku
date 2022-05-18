@@ -28,13 +28,28 @@ class Guestbook extends BaseController
 
     public function create()
     {
-        $guest_id = $this->request->getPost('guest_id');
-        $message = $this->request->getPost('message');
-        $data = array(
-            'guest_id'         => $guest_id,
-            'message'          => $message,
-            'created_at'    => date('Y-m-d H:i:s'),
-        );
+        $type = $this->request->getPost('type');
+        if ($type == 'public')
+        {
+            $data = array(
+                'guest_name'        => $this->request->getPost('guest_name'),
+                'guest_relation'    => $this->request->getPost('guest_relation'),
+                'ip_address'        => $this->request->getIPAddress(),
+                'is_attending'      => $this->request->getPost('is_attending'),
+                'message'           => $this->request->getPost('message'),
+                'created_at'        => date('Y-m-d H:i:s'),
+            );    
+        }
+        else
+        {
+            $data = array(
+                'guest_id'          => $this->request->getPost('guest_id'),
+                'ip_address'        => $this->request->getIPAddress(),
+                'is_attending'      => $this->request->getPost('is_attending'),
+                'message'           => $this->request->getPost('message'),
+                'created_at'        => date('Y-m-d H:i:s'),
+            );    
+        }
         $insert = $this->guestModel->insert_guestbook($data);
         if($insert)
         {

@@ -25,9 +25,15 @@
         ?>
         <tr>
         <th scope="row"><?= $i++; ?></th>
-        <td><a class="text-dark" href="<?= base_url('guest/'.$g->guest_id.'/edit'); ?>"><?= $g->title . ' ' . $g->name; ?></a></td>
+        <td>
+            <?php if( !empty($g->guest_id) ): ?>
+            <a class="text-dark" href="<?= base_url('guest/'.$g->guest_id.'/edit'); ?>"><?= $g->title . ' ' . $g->name; ?></a>
+            <?php else: ?>
+                <?= $g->guest_name . ' - ' . $g->guest_relation; ?>
+            <?php endif; ?>
+        </td>
         <td><?= $g->message; ?></td>
-        <td><?= $g->created_at; ?></td>
+        <td><?= $g->created_at; ?><sub><br>IP: <?= $g->ip_address; ?></sub></td>
         <td id="visibility-<?= $g->id; ?>"><?= ($g->approved ? 'Public':'Private'); ?></td>
         <td>
             <div class="btn-group" role="group">

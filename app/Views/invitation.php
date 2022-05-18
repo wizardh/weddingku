@@ -7,13 +7,14 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: 25vh;" id="acara">
+<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '35vh':'25vh');?>;" id="acara">
     <div class="zoom" style="font-family: 'Playfair Display', serif;">
         <h1 >The wedding of</h1>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
         <h3 ><?= date("F jS, Y", strtotime($setting->wedding_date));?></h3>
     </div>
 
+    <?php if( !empty($guest) ): ?>
     <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
       <p class="lead">Undangan Kepada</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -24,6 +25,7 @@
         </div>
       </div>
     </div>
+    <?php endif; ?>
 </div>
 
 <!-- BRIDE & GROOM -->
@@ -156,19 +158,47 @@
     <div class="col-md-5 pt-4 mx-auto justify-content-sm-center">
         <div class="card">
             <div class="card-body">
-            <div class="form-floating mb-3">
-                <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran" data-guest-id="<?= $guest->id; ?>">
-                    <option value="" disabled>- - -</option>
-                    <option value="1" <?= ($guest->is_attending ? 'selected':'');?>>Hadir</option>
-                    <option value="0" <?= ($guest->is_attending ? '':'selected');?>>Tidak Hadir</option>
-                </select>                
-                <label for="floatingInput">Kehadiran</label>
-              </div>
-            
+                <?php if( !empty($guest) ): ?>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran" data-guest-id="<?= $guest->id; ?>">
+                        <option value="" disabled>- - -</option>
+                        <option value="1" <?= ($guest->is_attending ? 'selected':'');?>>Hadir</option>
+                        <option value="0" <?= ($guest->is_attending ? '':'selected');?>>Tidak Hadir</option>
+                    </select>                
+                    <label for="floatingInput">Kehadiran</label>
+                </div>
+                <?php else: ?>
+                <div class="form-floating mb-3">
+
+                    <div class="input-group mb-3">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Nama" aria-label="Guest's name" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" id="relation" name="relation" class="form-control" placeholder="Saudara, Sahabat, Kerabat, dll ..." aria-label="Guest's relation" >
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="guest_attending" name="guest_attending" aria-label="kehadiran">
+                            <option value="" selected disabled>Kehadiran</option>
+                            <option value="1" >Hadir</option>
+                            <option value="0" >Tidak Hadir</option>
+                        </select>                
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea class="form-control" id="guest_message" rows="3" placeholder="Pesan"></textarea>
+                    </div>
+
+                </div>
+                
+                <div class="form-floating mb-3">
+                    <button class="btn btn-outline-secondary" id="submit-guest">Submit</button>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
+    <?php if( !empty($guest) ): ?>
     <div class="col-md-5 pb-4 mb-4 mx-auto justify-content-sm-center">
         <div class="card">
             <div class="card-body">
@@ -182,7 +212,7 @@
             </div>
         </div>
     </div>
-    
+    <?php endif; ?>
 
 </div>
 <!-- /KONFIRMASI -->
@@ -194,8 +224,10 @@
         <div class="card" style="height: 360px;">
             <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 360px;">
             <?php
+            $pesan = 0;
             if($guestbook):
                 foreach($guestbook as $u): 
+                    $pesan++;
             ?>
             <figure>
                 <blockquote class="blockquote text-black">
@@ -211,19 +243,28 @@
 
             if($private_guestbook):
                 foreach($private_guestbook as $pg): 
+                    $pesan++;
             ?>
             <figure>
                 <blockquote class="blockquote text-black">
                     <p><?= $pg->message; ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                    <?= $pg->name; ?> <cite title="Source Title">Private (Unpublished)</cite>
+                    <?= ($pg->name ? $pg->name:$pg->guest_name . ' - ' . $pg->guest_relation); ?> <cite title="Source Title">(Unpublished)</cite>
                 </figcaption>
             </figure>             
             <?php 
                 endforeach; 
             endif;
+
+            if( $pesan == 0):
             ?>
+            <figure>
+                <blockquote class="blockquote text-black">
+                    <i>Buku tamu masih kosong!</i>
+                </blockquote>
+            </figure>             
+            <?php endif; ?>
 
             </div>
         </div>
@@ -466,6 +507,43 @@ $(document).ready( function () {
         });
         
     });    
+
+    $('#submit-guest').on('click', function(){
+        let name = $('#name').val();
+        let relation = $('#relation').val();
+        let guest_attending = $('#guest_attending').val();
+        let guest_message = $('#guest_message').val();
+        let type = 'public';
+
+        Swal.fire({
+            title: 'Konfirmasi kehadiran dan kirim pesan?',
+            showCancelButton: true,
+            confirmButtonText: 'Kirim',
+            cancelButtonText: 'Batal',
+            // text: 'Pesan Anda akan segera tampil di halaman ini',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    url: `<?= base_url('guestbook/create'); ?>`,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { type:type, guest_name:name, guest_relation:relation, is_attending:guest_attending, message:guest_message },             
+                    success: function(data) {
+                        Swal.fire('Terima kasih atas pesannya!', '', 'success');
+
+                        message_html = 
+                            `<figure><blockquote class="blockquote text-black"><p>${message}</p></blockquote><figcaption class="blockquote-footer"><?= $guest->name; ?> <cite title="Source Title">Private (Unpublished)</cite></figcaption></figure>`;
+                        $('#comment-card').append(message_html);
+                        $('#message').val('');
+                    }
+                });
+
+            }
+        });
+        
+    });    
+    
 });
 
 // Set the date we're counting down to
