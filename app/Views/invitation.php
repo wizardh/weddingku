@@ -8,7 +8,7 @@
 ?>
 
 <div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '35vh':'25vh');?>;" id="acara">
-    <div class="zoom" style="font-family: 'Playfair Display', serif;">
+    <div class="zoom sect-header">
         <h1 >The wedding of</h1>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
         <h3 ><?= date("F jS, Y", strtotime($setting->wedding_date));?></h3>
@@ -29,7 +29,7 @@
 </div>
 
 <!-- BRIDE & GROOM -->
-<div class="bg-secondary text-white px-4 py-4 text-center" style="font-family: 'Playfair Display', serif;">
+<div class="bg-wedding text-white px-4 py-4 text-center sect-header">
     <div class="py-4 mb-4">
       <div class="row">      
         <div class="py-4">
@@ -59,33 +59,33 @@
 
 <!-- COUNTDOWN -->
 <div class="container px-4 py-4 text-center" id="counter-cards">
-    <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Mark the Date!</h1>
+    <h1 class="py-4 sect-header" >Mark the Date!</h1>
     <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4 mb-4 justify-content-center" id="countdown">
         <div class="col-lg-3">
-            <div class="card bg-secondary text-white">
+            <div class="card bg-wedding text-white">
                 <div class="card-body display-6 px-0" id="days">                    
                 </div>
                 <div class="card-subtitle mb-2">hari</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-secondary text-white">
+            <div class="card bg-wedding text-white">
                 <div class="card-body display-6 px-0" id="hours">
                 </div>
                 <div class="card-subtitle mb-2">jam</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-secondary text-white">
+            <div class="card bg-wedding text-white">
                 <div class="card-body display-6 px-0" id="minutes">                    
                 </div>
                 <div class="card-subtitle mb-2">menit</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-secondary text-white">
+            <div class="card bg-wedding text-white">
                 <div class="card-body display-6 px-0" id="seconds">                    
                 </div>
                 <div class="card-subtitle mb-2">detik</div>
@@ -97,13 +97,13 @@
 <!-- /COUNTDOWN -->
 
 <!-- AKAD DAN LOKASI -->
-<div class="bg-secondary text-white px-4 py-4 text-center" id="lokasi">
+<div class="bg-wedding text-white px-4 py-4 text-center" id="lokasi">
 
     <div class="row justify-content-center pt-4">
         <div class="col-md-3"></div>
         <div class="card col-md-3 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
             <div class="card-body">
-                <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Akad Nikah</h1>
+                <h1 class="card-title sect-header">Akad Nikah</h1>
                 <div class="py-2">
                     <div class="col-lg-12 mx-auto">
                         <p><i class="bi bi-calendar"></i> &nbsp; <?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->akad_date)); ?></p>
@@ -114,7 +114,7 @@
         </div>
         <div class="card col-md-3 mx-auto" style="background-color: rgba(245, 245, 245, 0.2);">
             <div class="card-body">
-                <h1 class="card-title" style="font-family: 'Playfair Display', serif;">Resepsi</h1>
+                <h1 class="card-title sect-header">Resepsi</h1>
                 <div class="py-2">
                     <div class="col-lg-12 mx-auto">
                         <p><i class="bi bi-calendar"></i> &nbsp; <?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date)); ?></p>
@@ -127,7 +127,7 @@
 
     </div>
 
-    <h1 class="pt-4" style="font-family: 'Playfair Display', serif;">Lokasi Acara</h1>
+    <h1 class="pt-4 sect-header">Lokasi Acara</h1>
     <i class="bi bi-pin-map"></i>
     <p><?= $setting->wedding_address;?></p>
     <div class="col-lg-12 mx-auto pt-4 pb-4 ">
@@ -154,14 +154,14 @@
 
 <!-- KONFIRMASI -->
 <div class="container px-4 py-4 text-center" id="buku-tamu">
-    <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Konfirmasi Kehadiran & Kirim Pesan</h1>
+    <h1 class="py-4 sect-header" >Konfirmasi Kehadiran & Kirim Pesan</h1>
     <div class="col-md-5 pt-4 mx-auto justify-content-sm-center">
         <div class="card">
             <div class="card-body">
                 <?php if( !empty($guest) ): ?>
                 <div class="form-floating mb-3">
                     <select class="form-select" id="is_attending" name="is_attending" aria-label="kehadiran" data-guest-id="<?= $guest->id; ?>">
-                        <option value="" disabled>- - -</option>
+                        <option value="" disabled>Kehadiran</option>
                         <option value="1" <?= ($guest->is_attending ? 'selected':'');?>>Hadir</option>
                         <option value="0" <?= ($guest->is_attending ? '':'selected');?>>Tidak Hadir</option>
                     </select>                
@@ -218,8 +218,8 @@
 <!-- /KONFIRMASI -->
 
 <!-- BUKU TAMU -->
-<div class="bg-secondary text-white px-4 py-4 text-center">
-    <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Buku Tamu</h1>
+<div class="bg-wedding text-white px-4 py-4 text-center">
+    <h1 class="py-4 sect-header" >Buku Tamu</h1>
     <div class="col-md-6 py-4 mb-4 mx-auto justify-content-sm-center">
         <div class="card" style="height: 360px;">
             <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 360px;">
@@ -274,10 +274,10 @@
 
 <!-- WISHLIST -->
 <div class="container px-4 py-4 text-center" id="wishlist">
-    <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Wishlist</h1>
+    <h1 class="py-4 sect-header">Wishlist</h1>
     <h4 class="lead">Kami sangat bahagia dan berterima kasih atas hadiah yang diterima 🥰</h4>
     <p class="py-4">
-    <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-light " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Lihat Wishlist
     </button>
     </p>
@@ -294,48 +294,7 @@
                 </div>
                 <hr>
                 <div class="row" style="overflow-x: auto; ">
-                <h4>Wishlist Produk</h4>
-                <?php 
-                    if( !empty($wishlist)):
-                ?>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Estimasi Harga</th>
-                        <th scope="col">Referensi</th>
-                        <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach($wishlist as $w):
-                        ?>
-                        <tr>
-                        <td><?= $w->description; ?><br><img src="<?= base_url('uploads/'.$w->image); ?>" class="img-thumbnail image-link rounded float-end" data-src="<?= base_url('uploads/'.$w->image); ?>" ></td>
-                        <td>Rp <?= number_format($w->estimated_price, 0, ',','.');?></td>
-                        <td><a href="<?= $w->reference_link; ?>">Link Marketplace</a></td>
-                        <?php
-                            if($w->status == 'open'): 
-                        ?>
-                        <td><button type="button" class="btn btn-success" style="width: 6em">Open</button</td>
-                        <?php
-                            else:
-                        ?>
-                        <td><button type="button" class="btn btn-warning" style="width: 6em" disabled>Booked!</button</td>
-                        <?php 
-                            endif;
-                        ?>
-                        </tr>
-                        <?php 
-                        endforeach;
-                        ?>
-                    </tbody>
-                </table>
-                <?php else: ?>
-                    <p class="lead">Belum ada wishlist, terima kasih sudah melihat!</p>
-                <?php endif; ?>
-
+                <h4><a class="btn btn-lg btn-outline-secondary" href="" target="_blank">Wishlist</a></h4>
                 </div>
 
             </div>
@@ -345,8 +304,8 @@
 </div>
 <!-- /WISHLIST -->
 <!-- TERIMA KASIH -->
-<div class="bg-secondary text-white px-auto py-4 text-center" style="font-family: 'Playfair Display', serif;">
-    <h1 class="py-4" style="font-family: 'Playfair Display', serif;">Terima Kasih!</h1>
+<div class="bg-wedding text-white px-auto py-4 text-center sect-header">
+    <h1 class="py-4">Terima Kasih!</h1>
     <div class="py-4">
       <div class="col-lg-8 mx-auto">
         <figure>
@@ -370,56 +329,56 @@
   </div>
 </div>
 
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<!-- <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"> -->
 <!-- widget for music player goes here -->
 <?php 
-    $youtube_ids = $setting->youtube_ids;
-    $youtube_ids = explode(',', $youtube_ids);
-    $youtube_id = $youtube_ids[array_rand($youtube_ids)];
+    // $youtube_ids = $setting->youtube_ids;
+    // $youtube_ids = explode(',', $youtube_ids);
+    // $youtube_id = $youtube_ids[array_rand($youtube_ids)];
 ?>
-    <div data-video="<?= $youtube_id; ?>" data-autoplay="1" data-loop="1" id="youtube-audio"></div> 
-    <script src="https://www.youtube.com/iframe_api"></script> 
+    <!-- <div data-video="<?= $youtube_id; ?>" data-autoplay="1" data-loop="1" id="youtube-audio"></div>  -->
+    <!-- <script src="https://www.youtube.com/iframe_api"></script>  -->
     <script>
-    function onYouTubeIframeAPIReady(){
-        var e=document.getElementById("youtube-audio");
+    // function onYouTubeIframeAPIReady(){
+    //     var e=document.getElementById("youtube-audio");
 
-        var t=document.createElement("img");
-        t.setAttribute("id","youtube-icon");
-        t.style.cssText="cursor:pointer;cursor:hand";
-        e.appendChild(t);
+    //     var t=document.createElement("img");
+    //     t.setAttribute("id","youtube-icon");
+    //     t.style.cssText="cursor:pointer;cursor:hand";
+    //     e.appendChild(t);
 
-        var a=document.createElement("div");
-        a.setAttribute("id","youtube-player");
-        e.appendChild(a);
+    //     var a=document.createElement("div");
+    //     a.setAttribute("id","youtube-player");
+    //     e.appendChild(a);
         
-        var o=function(e){
-            var a = e ? "lNq4jZd.png": "mn4k5d8.png";
-            t.setAttribute("src","https://i.imgur.com/"+a)
-        };
+    //     var o=function(e){
+    //         var a = e ? "lNq4jZd.png": "mn4k5d8.png";
+    //         t.setAttribute("src","https://i.imgur.com/"+a)
+    //     };
 
-        e.onclick=function(){
-            r.getPlayerState()===YT.PlayerState.PLAYING||r.getPlayerState()===YT.PlayerState.BUFFERING ? (r.pauseVideo(),o(!1)):(r.playVideo(),o(!0));
-        };
+    //     e.onclick=function(){
+    //         r.getPlayerState()===YT.PlayerState.PLAYING||r.getPlayerState()===YT.PlayerState.BUFFERING ? (r.pauseVideo(),o(!1)):(r.playVideo(),o(!0));
+    //     };
 
-        var r=new YT.Player("youtube-player",{
-            origin: "<?= base_url(); ?>", 
-            height:"0",
-            width:"0",
-            videoId:e.dataset.video,
-            playerVars:{
-                "autoplay":e.dataset.autoplay,
-                "loop":e.dataset.loop
-            },
-            events:{
-                "onReady":function(e){
-                    r.setPlaybackQuality("small"),o(r.getPlayerState()!==YT.PlayerState.CUED);
-                },
-                "onStateChange":function(e){
-                    e.data===YT.PlayerState.ENDED&&o(!1);
-                }
-            }
-        });
-    }        
+    //     var r=new YT.Player("youtube-player",{
+    //         origin: "<?= base_url(); ?>", 
+    //         height:"0",
+    //         width:"0",
+    //         videoId:e.dataset.video,
+    //         playerVars:{
+    //             "autoplay":e.dataset.autoplay,
+    //             "loop":e.dataset.loop
+    //         },
+    //         events:{
+    //             "onReady":function(e){
+    //                 r.setPlaybackQuality("small"),o(r.getPlayerState()!==YT.PlayerState.CUED);
+    //             },
+    //             "onStateChange":function(e){
+    //                 e.data===YT.PlayerState.ENDED&&o(!1);
+    //             }
+    //         }
+    //     });
+    // }        
     </script>
 </div>
 
@@ -515,8 +474,39 @@ $(document).ready( function () {
         let guest_message = $('#guest_message').val();
         let type = 'public';
 
+        name = name.trim();
+        guest_message = guest_message.trim();
+
+        console.log(guest_attending);
+        console.log(name.length);
+        console.log(guest_message.length);
+
+        if (name.length === 0)
+        {
+            Swal.fire({
+                title: 'Nama tidak boleh kosong!',
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }        
+        if (guest_attending === null)
+        {
+            Swal.fire({
+                title: 'Harap isi kehadiran Anda!',
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+            });
+            return false;
+        }
+
+        let title = 'Konfirmasi kehadiran dan kirim pesan?';
+        if(guest_message.length === 0){
+            title = 'Konfirmasi kehadiran tanpa pesan?';
+        }
+
         Swal.fire({
-            title: 'Konfirmasi kehadiran dan kirim pesan?',
+            title: title,
             showCancelButton: true,
             confirmButtonText: 'Kirim',
             cancelButtonText: 'Batal',
@@ -531,11 +521,13 @@ $(document).ready( function () {
                     data: { type:type, guest_name:name, guest_relation:relation, is_attending:guest_attending, message:guest_message },             
                     success: function(data) {
                         Swal.fire('Terima kasih atas pesannya!', '', 'success');
-
-                        message_html = 
-                            `<figure><blockquote class="blockquote text-black"><p>${message}</p></blockquote><figcaption class="blockquote-footer"><?= $guest->name; ?> <cite title="Source Title">Private (Unpublished)</cite></figcaption></figure>`;
-                        $('#comment-card').append(message_html);
-                        $('#message').val('');
+                        if( guest_message != '')
+                        {
+                            message_html = 
+                                `<figure><blockquote class="blockquote text-black"><p>${guest_message}</p></blockquote><figcaption class="blockquote-footer">${name} - ${relation} <cite title="Source Title">(Unpublished)</cite></figcaption></figure>`;
+                            $('#comment-card').append(message_html);
+                            $('#message').val('');
+                        }
                     }
                 });
 
@@ -572,7 +564,7 @@ let x = setInterval(function() {
         // $("#hours").html(0); 
         // $("#minutes").html(0);
         // $("#seconds").html(0);
-        $("#countdown").html(`<div class="card bg-secondary text-white">
+        $("#countdown").html(`<div class="card bg-wedding text-white">
                 <div class="card-body display-6 px-0" id="days">Hari ini!
                 </div>
             </div>`);

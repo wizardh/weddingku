@@ -29,6 +29,14 @@
         }
     }
 
+    .bg-wedding {
+        background-color: <?= $setting->bg_color; ?>;
+    }
+    
+    .sect-header{
+        font-family: 'Playfair Display', serif;
+    }
+
     .parallax {
         /* The image used */
         background-image: url("<?= base_url('assets/images/background.jpg'); ?>");

@@ -1,4 +1,6 @@
 <?= view('admin/templates/header'); ?>
+<script src="js/jscolor.js"></script>
+
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2"><?= $page_name; ?></h1>
@@ -134,11 +136,16 @@
 
             <div class="col-sm-12">
               <label for="name" class="form-label">YouTube Video ID for BGM (separate multiple IDs with comma, will be played randomly)</label>
-              <input type="text" class="form-control" id="youtube_ids" name="youtube_ids" placeholder="" value="<?= $wsettings->youtube_ids; ?>" required>
+              <input type="text" class="form-control" id="youtube_ids" name="youtube_ids" placeholder="" value="<?= $wsettings->youtube_ids; ?>">
+            </div>
+
+            <div class="col-sm-12">
+              <label for="bg_color" class="form-label">Background Color</label>
+              <input data-jscolor="{}" type="text" class="form-control" id="bg_color" name="bg_color" value="<?= $wsettings->bg_color; ?>" required>
               <div class="invalid-feedback">
                 Valid ID is required.
               </div>
-            </div>
+            </div>            
 
             <hr class="my-4">
 
@@ -151,5 +158,20 @@
     </main>
   </div>
 </div>
+
+<script>
+// Here we can adjust defaults for all color pickers on page:
+jscolor.presets.default = {
+    position: 'right',
+    palette: [
+        '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
+        '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
+        '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
+        '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
+    ],
+    //paletteCols: 12,
+    //hideOnPaletteClick: true,
+};
+</script>
 
 <?= view('admin/templates/footer'); ?>
