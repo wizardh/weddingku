@@ -1,4 +1,6 @@
 <?= view('templates/header'); ?>
+<script src="js/jscolor.js"></script>
+
 <?php 
     $day = date("l", strtotime($setting->wedding_date));
     $month = date("F", strtotime($setting->wedding_date));
@@ -31,8 +33,9 @@
 <!-- BRIDE & GROOM -->
 <div class="bg-wedding text-white px-4 py-4 text-center sect-header">
     <div class="py-4 mb-4">
-      <div class="row">      
+      <div class="row">        
         <div class="py-4">
+            <p><input onInput="update(this.jscolor, '.bg-wedding')" value="<?= $setting->bg_color;?>" data-jscolor="{}"></p>
             <h3>بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3>
             <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i>
             <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan kami:</p>
@@ -537,6 +540,27 @@ $(document).ready( function () {
     });    
     
 });
+
+// Here we can adjust defaults for all color pickers on page:
+jscolor.presets.default = {
+    position: 'right',
+    palette: [
+        '#000000', '#7d7d7d', '#870014', '#ec1c23', '#ff7e26',
+        '#fef100', '#22b14b', '#00a1e7', '#3f47cc', '#a349a4',
+        '#ffffff', '#c3c3c3', '#b87957', '#feaec9', '#ffc80d',
+        '#eee3af', '#b5e61d', '#99d9ea', '#7092be', '#c8bfe7',
+    ],
+    //paletteCols: 12,
+    //hideOnPaletteClick: true,
+};
+
+function update(picker, selector) {
+    // document.querySelector(selector).style.background = picker.toBackground();
+    $(selector).css('background-color', picker.toHEXString());
+}
+
+// triggers 'onInput' and 'onChange' on all color pickers when they are ready
+jscolor.trigger('input change');
 
 // Set the date we're counting down to
 let countDownDate = new Date("<?= $setting->wedding_date;?>").getTime();
