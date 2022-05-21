@@ -35,7 +35,9 @@
     <div class="py-4 mb-4">
       <div class="row">        
         <div class="py-4">
-            <p><input onInput="update(this.jscolor, '.bg-wedding')" value="<?= $setting->bg_color;?>" data-jscolor="{}"></p>
+            <?php if($url_code == 'debug'): ?>
+                <p><input onInput="update(this.jscolor, '.bg-wedding')" value="<?= $setting->bg_color;?>" data-jscolor="{}"></p>
+            <?php endif;?>
             <h3>بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3>
             <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i>
             <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan kami:</p>

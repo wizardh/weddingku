@@ -36,6 +36,7 @@ class Invitation extends BaseController
             'guestbook'         => $guestbook,
             'private_guestbook' => $private_guestbook,
             'wishlist'          => $wishlist,
+            'url_code'          => $invitation_code
         );
         return view('invitation', $data);
     }
