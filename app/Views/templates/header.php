@@ -34,7 +34,7 @@
     }
     
     .sect-header{
-        font-family: 'Playfair Display', serif;
+        font-family: 'Cambria', serif;
     }
 
     .parallax {

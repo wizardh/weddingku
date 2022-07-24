@@ -1,6 +1,10 @@
 <?= view('templates/header'); ?>
 <script src="js/jscolor.js"></script>
-
+<style>
+.feadad-color {
+    color: #808080
+}
+</style>
 <?php 
     $day = date("l", strtotime($setting->wedding_date));
     $month = date("F", strtotime($setting->wedding_date));
@@ -9,25 +13,37 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '35vh':'25vh');?>;" id="acara">
-    <div class="zoom sect-header">
+<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '25vh':'25vh');?>;" id="acara">
+    <div class="zoom sect-header feadad-color">
         <h1 >The wedding of</h1>
+        <br>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
-        <h3 ><?= date("F jS, Y", strtotime($setting->wedding_date));?></h3>
-    </div>
 
-    <?php if( !empty($guest) ): ?>
-    <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
-      <p class="lead">Undangan Kepada</p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <div class="card" style="min-width: 240px;">
-            <div class="lead card-body">
-                <?= $guest->title . ' ' . $guest->name; ?>
+        <?php if( !empty($guest) ): ?>
+        <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
+        <p class="lead">Undangan Kepada</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <div class="card" style="min-width: 240px;">
+                <div class="lead card-body">
+                    <?= $guest->title . ' ' . $guest->name; ?>
+                </div>
             </div>
         </div>
-      </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="py-4">
+            <div class="col-lg-8 mx-auto">
+                <figure>
+                    <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
+                    <figcaption class="blockquote-footer feadad-color">
+                    (QS. Ar-Ruum: 21)
+                    </figcaption>
+                </figure>      
+            </div>
+        </div>        
     </div>
-    <?php endif; ?>
+
 </div>
 
 <!-- BRIDE & GROOM -->
@@ -40,13 +56,13 @@
             <?php endif;?>
             <h3>بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h3>
             <p><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i>
-            <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan resepsi pernikahan kami:</p>
+            <br>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang rekan dan saudara di acara resepsi pernikahan kami:</p>
         </div>
       
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/bride.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->bride_name . ' (' . $setting->bride_nickname . ')'; ?></i></h2>
-            <p>Putri dari <?= $setting->bride_parents; ?></p>
+            <p>Putri tunggal dari <?= $setting->bride_parents; ?></p>
         </div><!-- /.col-lg-5 -->      
         <div class="col-lg-2 align-self-center">
             <div class="display-1">&</div>
@@ -54,7 +70,7 @@
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/groom.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->groom_name . ' (' . $setting->groom_nickname . ')'; ?></i></h2>
-            <p>Putra dari <?= $setting->groom_parents; ?></p>
+            <p>Putra pertama dari <?= $setting->groom_parents; ?></p>
         </div><!-- /.col-lg-5 -->
 
       </div>
@@ -63,8 +79,8 @@
 <!-- /BRIDE & GROOM -->
 
 <!-- COUNTDOWN -->
-<div class="container px-4 py-4 text-center" id="counter-cards">
-    <h1 class="py-4 sect-header" >Mark the Date!</h1>
+<div class="container px-4 py-4 text-center feadad-color" id="counter-cards">
+    <h1 class="py-4 sect-header" >Catat Tanggalnya!</h1>
     <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4 mb-4 justify-content-center" id="countdown">
@@ -139,11 +155,11 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.124865820308!2d106.87684175000001!3d-6.226605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f53ae0e3ca29%3A0xfba9636463a1ce8b!2sIS%20PLAZA%20BALLROOM!5e0!3m2!1sen!2sid!4v1647143521553!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 
-    <div class="col-lg-6 mx-auto">
+    <!-- <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Merupakan suatu kehormatan dan kebahagian bagi kami apabila rekan-rekan dan sahabat berkenan hadir dan memberikan doa restu untuk pernikahan kami.</p>
-    </div>
+    </div> -->
     <?php if($setting->health_protocol): ?>
-    <div class="col-lg-6 mx-auto text-start border-top">
+    <div class="col-lg-6 mx-auto text-start">
       <br>
       <p>Sebagai bentuk pencegahan terhadap persebaran wabah COVID 19, mohon patuhi selalu segala protokol kesehatan yang ada di tempat acara.</p>
     </div>
@@ -158,7 +174,7 @@
 <!-- /AKAD DAN LOKASI -->
 
 <!-- KONFIRMASI -->
-<div class="container px-4 py-4 text-center" id="buku-tamu">
+<div class="container px-4 py-4 text-center feadad-color" id="buku-tamu">
     <h1 class="py-4 sect-header" >Konfirmasi Kehadiran & Kirim Pesan</h1>
     <div class="col-md-5 pt-4 mx-auto justify-content-sm-center">
         <div class="card">
@@ -278,9 +294,9 @@
 <!-- /BUKU TAMU -->
 
 <!-- WISHLIST -->
-<div class="container px-4 py-4 text-center" id="wishlist">
+<div class="container px-4 py-4 text-center feadad-color" id="wishlist">
     <h1 class="py-4 sect-header">Wishlist</h1>
-    <h4 class="lead">Kami sangat bahagia dan berterima kasih atas hadiah yang diterima 🥰</h4>
+    <h4 class="lead">Kami sangat dan berterima kasih atas semua hadiah yang kami terima 🥰</h4>
     <p class="py-4">
     <button class="btn btn-light " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Lihat Wishlist
@@ -299,7 +315,7 @@
                 </div>
                 <hr>
                 <div class="row" style="overflow-x: auto; ">
-                <h4><a class="btn btn-lg btn-outline-secondary" href="" target="_blank">Wishlist</a></h4>
+                <h4><a class="btn btn-lg btn-outline-secondary" href="https://bit.ly/wishlistnikenaya" target="_blank">Wishlist</a></h4>
                 </div>
 
             </div>
@@ -309,7 +325,7 @@
 </div>
 <!-- /WISHLIST -->
 <!-- TERIMA KASIH -->
-<div class="bg-wedding text-white px-auto py-4 text-center sect-header">
+<!-- <div class="bg-wedding text-white px-auto py-4 text-center sect-header">
     <h1 class="py-4">Terima Kasih!</h1>
     <div class="py-4">
       <div class="col-lg-8 mx-auto">
@@ -321,7 +337,7 @@
         </figure>      
       </div>
     </div>
-</div>
+</div> -->
 <!-- /TERIMA KASIH -->
 
 <!-- Modal -->
