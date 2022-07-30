@@ -62,7 +62,7 @@
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/bride.png'); ?>" aria-label="Bride Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->bride_name . ' (' . $setting->bride_nickname . ')'; ?></i></h2>
-            <p>Putri tunggal dari <?= $setting->bride_parents; ?></p>
+            <p><?= $setting->bride_parents; ?></p>
         </div><!-- /.col-lg-5 -->      
         <div class="col-lg-2 align-self-center">
             <div class="display-1">&</div>
@@ -70,7 +70,7 @@
         <div class="col-lg-5">
             <img class="bd-placeholder-img rounded-circle" width="180" height="180" src="<?= base_url('assets/images/groom.png'); ?>" aria-label="Groom Pic" preserveAspectRatio="xMidYMid slice" focusable="false">
             <h2><i><?= $setting->groom_name . ' (' . $setting->groom_nickname . ')'; ?></i></h2>
-            <p>Putra pertama dari <?= $setting->groom_parents; ?></p>
+            <p><?= $setting->groom_parents; ?></p>
         </div><!-- /.col-lg-5 -->
 
       </div>
@@ -194,9 +194,7 @@
                     <div class="input-group mb-3">
                         <input type="text" id="name" name="name" class="form-control" placeholder="Nama" aria-label="Guest's name" aria-describedby="basic-addon2">
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="text" id="relation" name="relation" class="form-control" placeholder="Saudara, Sahabat, Kerabat, dll ..." aria-label="Guest's relation" >
-                    </div>
+                    <input type="hidden" id="relation" name="relation" value="-" aria-label="Guest's relation" >
 
                     <div class="input-group mb-3">
                         <select class="form-select" id="guest_attending" name="guest_attending" aria-label="kehadiran">
@@ -271,7 +269,7 @@
                     <p><?= $pg->message; ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                    <?= ($pg->name ? $pg->name:$pg->guest_name . ' - ' . $pg->guest_relation); ?> <cite title="Source Title">(Unpublished)</cite>
+                    <?= ($pg->name ? $pg->name:$pg->guest_name); ?> <cite title="Source Title">(Unpublished)</cite>
                 </figcaption>
             </figure>             
             <?php 
@@ -545,7 +543,7 @@ $(document).ready( function () {
                         if( guest_message != '')
                         {
                             message_html = 
-                                `<figure><blockquote class="blockquote text-black"><p>${guest_message}</p></blockquote><figcaption class="blockquote-footer">${name} - ${relation} <cite title="Source Title">(Unpublished)</cite></figcaption></figure>`;
+                                `<figure><blockquote class="blockquote text-black"><p>${guest_message}</p></blockquote><figcaption class="blockquote-footer">${name}<cite title="Source Title">(Unpublished)</cite></figcaption></figure>`;
                             $('#comment-card').append(message_html);
                             $('#message').val('');
                         }
