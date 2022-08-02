@@ -59,6 +59,8 @@ class Setting extends BaseController
             'bg_color' => $this->request->getPost('bg_color'),
             'primary_color' => $this->request->getPost('primary_color'),
             'secondary_color' => $this->request->getPost('secondary_color'),
+            'font_import' => $this->request->getPost('font_import'),
+            'font_css' => $this->request->getPost('font_css'),
             'updated_by'    => $updated_by,
         );
         $update = $this->adminModel->update_wedding_settings($data);

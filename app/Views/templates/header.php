@@ -11,8 +11,8 @@
 
     <!-- FONTS AND ICONS -->
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+    @import url('<?= $setting->font_import; ?>');
 
     @keyframes zoom-out {
         0% {
@@ -34,7 +34,7 @@
     }
     
     .sect-header{
-        font-family: 'Cambria', serif;
+        <?= $setting->font_css; ?>
     }
 
     .parallax {

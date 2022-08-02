@@ -163,6 +163,16 @@
                 Valid ID is required.
               </div>
             </div>            
+
+            <div class="col-sm-12">
+              <label for="name" class="form-label">Font Import Style URL</label>
+              <input type="text" class="form-control" id="font_import" name="font_import" placeholder="" value="<?= $wsettings->font_import; ?>">
+            </div>
+
+            <div class="col-sm-12">
+              <label for="name" class="form-label">Font CSS Rules</label>
+              <input type="text" class="form-control" id="font_css" name="font_css" placeholder="" value="<?= $wsettings->font_css; ?>">
+            </div>
             
             <hr class="my-4">
 
