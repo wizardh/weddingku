@@ -32,8 +32,8 @@
     .bg-wedding {
         background-color: <?= $setting->bg_color; ?>;
     }
-    
-    .sect-header{
+
+    body{
         <?= $setting->font_css; ?>
     }
 

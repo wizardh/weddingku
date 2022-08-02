@@ -1,6 +1,6 @@
 
 <div style="background-color:<?= $setting->bg_color; ?>">
-  <footer class="container d-flex justify-content-between align-items-center py-3 text-light" style="font-family: 'Playfair Display', serif;">
+  <footer class="container d-flex justify-content-between align-items-center py-3 text-secondary-font" style="<?= $setting->font_css; ?>">
     <p class="col-md-4 mb-0">&copy; <?= date('Y'); ?> Niken & Aya</p>
 
   </footer>
