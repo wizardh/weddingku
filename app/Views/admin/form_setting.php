@@ -147,6 +147,23 @@
               </div>
             </div>            
 
+            <div class="col-sm-12">
+              <label for="bg_color" class="form-label">Primary Text Color</label>
+              <input data-jscolor="{}" type="text" class="form-control" id="primary_color" name="primary_color" value="<?= $wsettings->primary_color; ?>" required>
+              <div class="invalid-feedback">
+                Valid ID is required.
+              </div>
+            </div>            
+
+
+            <div class="col-sm-12">
+              <label for="bg_color" class="form-label">Secondary Text Color</label>
+              <input data-jscolor="{}" type="text" class="form-control" id="secondary_color" name="secondary_color" value="<?= $wsettings->secondary_color; ?>" required>
+              <div class="invalid-feedback">
+                Valid ID is required.
+              </div>
+            </div>            
+            
             <hr class="my-4">
 
             <div class="col-4">

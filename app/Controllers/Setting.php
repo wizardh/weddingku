@@ -57,6 +57,8 @@ class Setting extends BaseController
             'invitation_template' => $this->request->getPost('invitation_template'),
             'youtube_ids' => $this->request->getPost('youtube_ids'),
             'bg_color' => $this->request->getPost('bg_color'),
+            'primary_color' => $this->request->getPost('primary_color'),
+            'secondary_color' => $this->request->getPost('secondary_color'),
             'updated_by'    => $updated_by,
         );
         $update = $this->adminModel->update_wedding_settings($data);

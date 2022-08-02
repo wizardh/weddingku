@@ -1,8 +1,11 @@
 <?= view('templates/header'); ?>
 <script src="js/jscolor.js"></script>
 <style>
-.feadad-color {
-    color: #808080
+.text-primary-color {
+    color: <?= $setting->primary_color; ?>
+}
+.text-secondary-color {
+    color: <?= $setting->secondary_color; ?>
 }
 </style>
 <?php 
@@ -14,7 +17,7 @@
 ?>
 
 <div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '25vh':'25vh');?>;" id="acara">
-    <div class="zoom sect-header feadad-color">
+    <div class="zoom sect-header text-primary-color">
         <h1 >The wedding of</h1>
         <br>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
@@ -36,7 +39,7 @@
             <div class="col-lg-8 mx-auto">
                 <figure>
                     <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
-                    <figcaption class="blockquote-footer feadad-color">
+                    <figcaption class="blockquote-footer text-primary-color">
                     (QS. Ar-Ruum: 21)
                     </figcaption>
                 </figure>      
@@ -47,7 +50,7 @@
 </div>
 
 <!-- BRIDE & GROOM -->
-<div class="bg-wedding text-white px-4 py-4 text-center sect-header">
+<div class="bg-wedding text-secondary-color px-4 py-4 text-center sect-header">
     <div class="py-4 mb-4">
       <div class="row">        
         <div class="py-4">
@@ -79,34 +82,34 @@
 <!-- /BRIDE & GROOM -->
 
 <!-- COUNTDOWN -->
-<div class="container px-4 py-4 text-center feadad-color" id="counter-cards">
+<div class="container px-4 py-4 text-center text-primary-color" id="counter-cards">
     <h1 class="py-4 sect-header" >Catat Tanggalnya!</h1>
     <h4 class="lead"><?= "{$hari}, {$tanggal} {$bulan} " . date("Y", strtotime($setting->wedding_date));?></h4>
 
     <div class="row row-cols-4 row-cols-lg-4 align-items-stretch g-4 py-4 mb-4 justify-content-center" id="countdown">
         <div class="col-lg-3">
-            <div class="card bg-wedding text-white">
+            <div class="card bg-wedding text-secondary-color">
                 <div class="card-body display-6 px-0" id="days">                    
                 </div>
                 <div class="card-subtitle mb-2">hari</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-wedding text-white">
+            <div class="card bg-wedding text-secondary-color">
                 <div class="card-body display-6 px-0" id="hours">
                 </div>
                 <div class="card-subtitle mb-2">jam</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-wedding text-white">
+            <div class="card bg-wedding text-secondary-color">
                 <div class="card-body display-6 px-0" id="minutes">                    
                 </div>
                 <div class="card-subtitle mb-2">menit</div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="card bg-wedding text-white">
+            <div class="card bg-wedding text-secondary-color">
                 <div class="card-body display-6 px-0" id="seconds">                    
                 </div>
                 <div class="card-subtitle mb-2">detik</div>
@@ -118,7 +121,7 @@
 <!-- /COUNTDOWN -->
 
 <!-- AKAD DAN LOKASI -->
-<div class="bg-wedding text-white px-4 py-4 text-center" id="lokasi">
+<div class="bg-wedding text-secondary-color px-4 py-4 text-center" id="lokasi">
 
     <div class="row justify-content-center pt-4">
         <div class="col-md-3"></div>
@@ -174,7 +177,7 @@
 <!-- /AKAD DAN LOKASI -->
 
 <!-- KONFIRMASI -->
-<div class="container px-4 py-4 text-center feadad-color" id="buku-tamu">
+<div class="container px-4 py-4 text-center text-primary-color" id="buku-tamu">
     <h1 class="py-4 sect-header" >Konfirmasi Kehadiran & Kirim Pesan</h1>
     <div class="col-md-5 pt-4 mx-auto justify-content-sm-center">
         <div class="card">
@@ -237,7 +240,7 @@
 <!-- /KONFIRMASI -->
 
 <!-- BUKU TAMU -->
-<div class="bg-wedding text-white px-4 py-4 text-center">
+<div class="bg-wedding text-secondary-color px-4 py-4 text-center">
     <h1 class="py-4 sect-header" >Buku Tamu</h1>
     <div class="col-md-6 py-4 mb-4 mx-auto justify-content-sm-center">
         <div class="card" style="height: 360px;">
@@ -292,9 +295,9 @@
 <!-- /BUKU TAMU -->
 
 <!-- WISHLIST -->
-<div class="container px-4 py-4 text-center feadad-color" id="wishlist">
+<div class="container px-4 py-4 text-center text-primary-color" id="wishlist">
     <h1 class="py-4 sect-header">Wishlist</h1>
-    <h4 class="lead">Kami sangat dan berterima kasih atas semua hadiah yang kami terima 🥰</h4>
+    <h4 class="lead">Kami sangat berterima kasih atas semua hadiah yang kami terima 🥰</h4>
     <p class="py-4">
     <button class="btn btn-light " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Lihat Wishlist
@@ -323,13 +326,13 @@
 </div>
 <!-- /WISHLIST -->
 <!-- TERIMA KASIH -->
-<!-- <div class="bg-wedding text-white px-auto py-4 text-center sect-header">
+<!-- <div class="bg-wedding text-secondary-color px-auto py-4 text-center sect-header">
     <h1 class="py-4">Terima Kasih!</h1>
     <div class="py-4">
       <div class="col-lg-8 mx-auto">
         <figure>
             <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
-            <figcaption class="blockquote-footer text-white">
+            <figcaption class="blockquote-footer text-secondary-color">
             (QS. Ar-Ruum: 21)
             </figcaption>
         </figure>      
@@ -604,7 +607,7 @@ let x = setInterval(function() {
         // $("#hours").html(0); 
         // $("#minutes").html(0);
         // $("#seconds").html(0);
-        $("#countdown").html(`<div class="card bg-wedding text-white">
+        $("#countdown").html(`<div class="card bg-wedding text-secondary-color">
                 <div class="card-body display-6 px-0" id="days">Hari ini!
                 </div>
             </div>`);
