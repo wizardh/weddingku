@@ -213,7 +213,7 @@
                 </div>
                 
                 <div class="form-floating mb-3">
-                    <button class="btn btn-outline-secondary" id="submit-guest">Submit</button>
+                    <button class="btn btn-light btn-outline-dark"  id="submit-guest">Submit</button>
                 </div>
                 <?php endif; ?>
             </div>
@@ -228,7 +228,7 @@
                 <textarea class="form-control" id="message" rows="3"></textarea>
               </div>
               <div class="form-floating mb-3">
-                <button class="btn btn-outline-secondary" id="kirim-pesan" data-guest-id="<?= $guest->id; ?>">Kirim Pesan</button>
+                  <button class="btn btn-light btn-outline-dark"  id="kirim-pesan" data-guest-id="<?= $guest->id; ?>">Kirim Pesan</button>
               </div>
             
             </div>
@@ -299,7 +299,7 @@
     <h1 class="py-4 sect-header">Wishlist</h1>
     <h4 class="lead">Kami sangat berterima kasih atas semua hadiah yang kami terima 🥰</h4>
     <p class="py-4">
-    <button class="btn btn-light " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-light btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Lihat Wishlist
     </button>
     </p>
@@ -316,7 +316,7 @@
                 </div>
                 <hr>
                 <div class="row" style="overflow-x: auto; ">
-                <h4><a class="btn btn-lg btn-outline-secondary" href="https://bit.ly/wishlistnikenaya" target="_blank">Wishlist</a></h4>
+                <h4><a class="btn btn-light btn-outline-dark" href="https://bit.ly/wishlistnikenaya" target="_blank">Wishlist</a></h4>
                 </div>
 
             </div>
