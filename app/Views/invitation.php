@@ -24,25 +24,29 @@
 
         <?php if( !empty($guest) ): ?>
         <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
-        <p class="lead">Undangan Kepada</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <div class="card" style="min-width: 240px;">
-                <div class="lead card-body">
-                    <?= $guest->title . ' ' . $guest->name; ?>
+            <p class="lead">Undangan Kepada</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="card" style="min-width: 240px;">
+                    <div class="lead card-body">
+                        <?= $guest->title . ' ' . $guest->name; ?>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <?php endif; ?>
 
         <div class="py-4">
-            <div class="col-lg-8 mx-auto">
-                <figure>
-                    <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
-                    <figcaption class="blockquote-footer text-primary-color">
-                    (QS. Ar-Ruum: 21)
-                    </figcaption>
-                </figure>      
+            <div class="row mx-2">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <figure>
+                        <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati, dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir."</p>
+                        <figcaption class="blockquote-footer text-primary-color">
+                        (QS. Ar-Ruum: 21)
+                        </figcaption>
+                    </figure>      
+                </div>
+                <div class="col-lg-2"></div>
             </div>
         </div>        
     </div>
