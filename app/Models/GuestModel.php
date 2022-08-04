@@ -56,6 +56,7 @@ class GuestModel extends Model
         {
             $builder->where('gb.approved', 1);
         }
+        $builder->orderBy('id', 'desc');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -67,6 +68,7 @@ class GuestModel extends Model
         $builder->join('guest g', 'g.id=gb.guest_id');
         $builder->where('gb.guest_id', $guest_id);
         $builder->where('gb.approved', 0);
+        $builder->orderBy('id', 'desc');
 
         $query = $builder->get();
         return $query->getResult();
