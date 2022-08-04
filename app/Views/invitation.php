@@ -247,8 +247,8 @@
 <div class="bg-wedding text-secondary-color px-4 py-4 text-center">
     <h1 class="py-4 sect-header" >Buku Tamu</h1>
     <div class="col-md-6 py-4 mb-4 mx-auto justify-content-sm-center">
-        <div class="card" style="height: 360px;">
-            <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 360px;">
+        <div class="card" style="height: 420px;">
+            <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 420px;">
             <?php
             $pesan = 0;
             if($guestbook):
@@ -257,10 +257,10 @@
             ?>
             <figure>
                 <blockquote class="blockquote text-black">
-                    <p><?= $u->message; ?></p>
+                    <p class="h6"><?= $u->message; ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                    <?= $u->name; ?> <cite title="Source Title"><?= $u->created_at; ?></cite>
+                <?= ($u->name ? $u->name:$u->guest_name); ?> <cite title="Source Title"><?= $u->created_at; ?></cite>
                 </figcaption>
             </figure>             
             <?php 
