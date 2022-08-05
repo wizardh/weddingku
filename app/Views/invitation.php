@@ -251,6 +251,7 @@
             <div class="card-body" id="comment-card" style="overflow-y: auto; max-height: 420px;">
             <?php
             $pesan = 0;
+            date_default_timezone_set('Asia/Tokyo');
             if($guestbook):
                 foreach($guestbook as $u): 
                     $pesan++;
@@ -260,7 +261,7 @@
                     <p class="h6"><?= $u->message; ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                <?= ($u->name ? $u->name:$u->guest_name); ?> <cite title="Source Title"><?= $u->created_at; ?></cite>
+                <?= ($u->name ? $u->name:$u->guest_name); ?> <cite title="Source Title"><?= changeTimeZone($u->created_at, "Asia/Jakarta"); ?></cite>
                 </figcaption>
             </figure>             
             <?php 

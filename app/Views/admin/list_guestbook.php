@@ -11,6 +11,7 @@
         <tr>
         <th scope="col">#</th>
         <th scope="col">Nama</th>
+        <th scope="col">Kehadiran</th>
         <th scope="col">Pesan</th>
         <th scope="col">Timestamp</th>
         <th scope="col">Visibility</th>
@@ -27,11 +28,12 @@
         <th scope="row"><?= $i++; ?></th>
         <td>
             <?php if( !empty($g->guest_id) ): ?>
-            <a class="text-dark" href="<?= base_url('guest/'.$g->guest_id.'/edit'); ?>"><?= $g->title . ' ' . $g->name; ?></a>
+            <a class="text-dark" href="<?= base_url('guest/'.$g->guest_id.'/edit'); ?>"><?= $g->title . ' ' . $g->name ?></a>
             <?php else: ?>
-                <?= $g->guest_name . ' - ' . $g->guest_relation; ?>
+                <?= $g->guest_name; ?>
             <?php endif; ?>
         </td>
+        <td><?= ($g->is_attending ? 'Hadir':'Tidak Hadir'); ?></td>
         <td><?= $g->message; ?></td>
         <td><?= $g->created_at; ?><sub><br>IP: <?= $g->ip_address; ?></sub></td>
         <td id="visibility-<?= $g->id; ?>"><?= ($g->approved ? 'Public':'Private'); ?></td>
