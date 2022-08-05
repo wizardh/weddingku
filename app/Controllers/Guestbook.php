@@ -6,6 +6,7 @@ class Guestbook extends BaseController
 {
     function __construct()
     {
+        helper(['custom_helper']);
         helper(['form', 'cookie', 'date']);
         $this->guestModel = new GuestModel();
     }
