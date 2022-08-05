@@ -41,4 +41,9 @@ class Invitation extends BaseController
         return view('invitation', $data);
     }
 
+    public function getTimeZone()
+    {
+        echo date_default_timezone_get();
+    }
+
 }
