@@ -261,7 +261,7 @@
                     <p class="h6"><?= $u->message; ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                <?= ($u->name ? $u->name:$u->guest_name); ?> <cite title="Source Title"><?= changeTimeZone($u->created_at, "America/Chicago", "Asia/Jakarta"); ?></cite>
+                <?= ($u->name ? $u->name:$u->guest_name); ?> <cite title="Source Title">(<?= changeTimeZone($u->created_at, "America/Chicago", "Asia/Jakarta"); ?>)</cite>
                 </figcaption>
             </figure>             
             <?php 
