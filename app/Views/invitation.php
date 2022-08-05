@@ -16,14 +16,14 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="pt-auto pb-auto my-auto text-center zoom-wrapper" style="height: 100vh; padding-top: <?= ( empty($guest) ? '25vh':'25vh');?>;" id="acara">
-    <div class="zoom sect-header text-primary-color">
-        <h1 >The wedding of</h1>
+<div class="text-center vh-100 d-flex align-items-center" id="acara">
+    <div class="zoom sect-header text-primary-color my-auto">
+        <h1 class="pt-2">The wedding of</h1>
         <br>
         <h1 class="display-1"><i><?= $setting->bride_nickname; ?> & <?= $setting->groom_nickname; ?></i></h1>
 
         <?php if( !empty($guest) ): ?>
-        <div class="col-lg-6 mx-auto px-4 pt-4 mt-4 mb-4">
+        <div class="col-lg-6 mx-auto ">
             <p class="lead">Undangan Kepada</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <div class="card" style="min-width: 240px;">
