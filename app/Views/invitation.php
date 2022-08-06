@@ -16,7 +16,7 @@
     $bulan = month_to_bulan($month);
 ?>
 
-<div class="text-center vh-100 d-flex align-items-center" id="acara">
+<div class="text-center vh-100 d-flex align-items-center zoom-wrapper" id="acara">
     <div class="zoom sect-header text-primary-color my-auto">
         <h1 class="pt-2">The wedding of</h1>
         <br>
@@ -603,6 +603,7 @@ let x = setInterval(function() {
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    console.log(seconds);
 
     // If the count down is finished, write some text
     if (distance < 0) {
