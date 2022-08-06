@@ -33,7 +33,7 @@
                 <?= $g->guest_name; ?>
             <?php endif; ?>
         </td>
-        <td><?= ($g->is_attending ? 'Hadir':'Tidak Hadir'); ?></td>
+        <td><?= (!empty($g->guest_id) ? ($g->g_attending ? 'Hadir':'Tidak Hadir') : ($g->is_attending ? 'Hadir':'Tidak Hadir') ) ; ?></td>
         <td><?= $g->message; ?></td>
         <td><?= changeTimeZone($g->created_at, "America/Chicago", "Asia/Jakarta"); ?><sub><br>IP: <?= $g->ip_address; ?></sub></td>
         <td id="visibility-<?= $g->id; ?>"><?= ($g->approved ? 'Public':'Private'); ?></td>

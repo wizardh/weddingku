@@ -50,7 +50,7 @@ class GuestModel extends Model
     public function get_guestbooks($is_filtered = TRUE)
     {
         $builder = $this->db->table('guestbook gb');
-        $builder->select('g.title, g.address, g.name, gb.*');
+        $builder->select('g.title, g.address, g.name, g.is_attending as g_attending, gb.*');
         $builder->join('guest g', 'g.id=gb.guest_id', 'left');
         if( $is_filtered )
         {
