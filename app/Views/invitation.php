@@ -454,7 +454,7 @@ $(document).ready( function () {
                 attendee: attendee
             },
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 Swal.fire('Konfirmasi diterima!', '', 'success');
                 $('#attendee').val(attendee);
             }
@@ -504,9 +504,9 @@ $(document).ready( function () {
         name = name.trim();
         guest_message = guest_message.trim();
 
-        console.log(guest_attending);
-        console.log(name.length);
-        console.log(guest_message.length);
+        // console.log(guest_attending);
+        // console.log(name.length);
+        // console.log(guest_message.length);
 
         if (name.length === 0)
         {
@@ -603,7 +603,7 @@ let x = setInterval(function() {
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    console.log(seconds);
+    // console.log(seconds);
 
     // If the count down is finished, write some text
     if (distance < 0) {
